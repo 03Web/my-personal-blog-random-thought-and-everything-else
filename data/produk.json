@@ -1,0 +1,78 @@
+[
+  {
+    "id": "buku-carl-sagan-cosmos",
+    "nama": "Buku Bekas: 'Cosmos' oleh Carl Sagan (Kondisi Baik)",
+    "harga": 85000,
+    "gambar": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347353032l/55030.jpg",
+    "gambar_produk": [
+      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347353032l/55030.jpg",
+      "https://upload.wikimedia.org/wikipedia/id/c/c1/Cosmos-Sagan.jpg"
+    ],
+    "penjual_wa": "6285876983793",
+    "rating": 4.9,
+    "terjual": "1",
+    "lokasi": "Semarang",
+    "kategori": "buku",
+    "deskripsi": "Edisi lawas dari buku 'Cosmos' karya Carl Sagan. Sebuah mahakarya yang menjelajahi alam semesta dengan bahasa puitis. Kondisi 8/10, ada sedikit coretan stabilo di beberapa halaman, tidak ada halaman yang sobek. Wajib dimiliki bagi siapa saja yang terpesona oleh bintang."
+  },
+  {
+    "id": "keyboard-mechanical-bekas",
+    "nama": "Keyboard Mechanical VortexSeries GT-8 (Brown Switch)",
+    "harga": 250000,
+    "gambar": "https://images.tokopedia.net/img/cache/700/VqbcmM/2022/1/27/c2c5c2d3-0d04-4f4d-8e47-4f6534570d5e.jpg",
+    "gambar_produk": [
+      "https://images.tokopedia.net/img/cache/700/VqbcmM/2022/1/27/c2c5c2d3-0d04-4f4d-8e47-4f6534570d5e.jpg"
+    ],
+    "penjual_wa": "6285876983793",
+    "rating": 4.8,
+    "terjual": "0",
+    "lokasi": "Temanggung",
+    "kategori": "teknologi",
+    "deskripsi": "Keyboard mechanical bekas pemakaian pribadi. Brown switch, cocok untuk mengetik dan sesekali main game. Semua tombol berfungsi normal, LED RGB masih menyala terang. Alasan jual: sudah upgrade ke keyboard custom. Box lengkap."
+  },
+  {
+    "id": "buku-madilog-tan-malaka",
+    "nama": "Buku Preloved: 'Madilog' oleh Tan Malaka",
+    "harga": 55000,
+    "gambar": "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/10/20/6e226457-3729-4d69-8f0a-58f7c9e03d42.jpg",
+    "gambar_produk": [
+      "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/10/20/6e226457-3729-4d69-8f0a-58f7c9e03d42.jpg"
+    ],
+    "penjual_wa": "6285876983793",
+    "rating": 5.0,
+    "terjual": "0",
+    "lokasi": "Semarang",
+    "kategori": "buku",
+    "deskripsi": "Salah satu buku paling fundamental dari Bapak Republik, Tan Malaka. Mengajarkan cara berpikir logis dan dialektis. Kondisi masih sangat bagus, hanya sedikit menguning di bagian pinggir kertas karena usia. Sampul disampul plastik."
+  },
+  {
+    "id": "raspberry-pi-3b",
+    "nama": "Raspberry Pi 3 Model B+ (Batangan)",
+    "harga": 450000,
+    "gambar": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//95/MTA-3129334/raspberry-pi_raspberry-pi-3-model-b--_full02.jpg",
+    "gambar_produk": [
+      "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//95/MTA-3129334/raspberry-pi_raspberry-pi-3-model-b--_full02.jpg"
+    ],
+    "penjual_wa": "6285876983793",
+    "rating": 4.7,
+    "terjual": "0",
+    "lokasi": "Temanggung",
+    "kategori": "teknologi",
+    "deskripsi": "Single Board Computer (SBC) Raspberry Pi 3 Model B+. Cocok untuk proyek IoT, server kecil, atau belajar Linux. Hanya unit saja (batangan), tanpa SD card dan power supply. Fungsi 100% normal, jarang dipakai."
+  },
+  {
+    "id": "jasa-install-ulang",
+    "nama": "Jasa Install Ulang OS (Windows/Linux)",
+    "harga": 75000,
+    "gambar": "https://media.npr.org/assets/img/2014/04/04/windows-xp-2_wide-79f642468032778c80b62c47b5b5b03577d6c6e1.jpg?s=1400",
+    "gambar_produk": [
+      "https://media.npr.org/assets/img/2014/04/04/windows-xp-2_wide-79f642468032778c80b62c47b5b5b03577d6c6e1.jpg?s=1400"
+    ],
+    "penjual_wa": "6285876983793",
+    "rating": 5.0,
+    "terjual": "10+",
+    "lokasi": "Area Temanggung",
+    "kategori": "jasa",
+    "deskripsi": "Menerima jasa install ulang laptop/PC. Bisa Windows (7, 10, 11) atau distro Linux (Ubuntu, Mint, dll). Sudah termasuk instalasi driver dan aplikasi dasar. Laptop lemot atau kena virus? Siap dibantu."
+  }
+]
