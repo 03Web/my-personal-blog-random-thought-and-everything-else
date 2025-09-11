@@ -3512,3 +3512,59 @@ body[data-page-id="aspirasi"] .container {
 #identity-confirm-btn {
   width: 100%;
 }
+/* File: css/style.css */
+
+/* ======================================================= */
+/* ===   PERBAIKAN TAMPILAN MOBILE & PROFESIONALISASI  === */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* --- Perbaikan Hero Section --- */
+  .hero-section {
+    padding: 25px 0 40px 0; /* Mengatur ulang padding agar lebih seimbang */
+    min-height: calc(100vh - 120px); /* Membuat section mengisi layar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Memusatkan konten secara vertikal */
+  }
+
+  .hero-image {
+    width: 250px; /* Diperbesar dari 200px */
+    margin-bottom: 25px; /* Menambah jarak di bawah gambar */
+  }
+
+  .hero-content p {
+    margin-bottom: 25px; /* Mengurangi jarak di bawah paragraf, menaikkan tombol */
+  }
+
+  /* --- Profesionalisasi Header Mobile --- */
+  .mobile-header-container .logo {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .mobile-header-container .logo a {
+    gap: 12px; /* Menambah jarak antara logo dan teks */
+    align-items: center;
+  }
+
+  .mobile-header-container .logo img {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+  }
+
+  .mobile-header-container .logo-main-text {
+    font-size: 0.8em; /* Ukuran font disesuaikan agar rapi */
+    white-space: normal; /* Izinkan teks turun baris jika terlalu panjang */
+    line-height: 1.2;
+    text-align: left;
+    font-style: italic;
+  }
+
+  .mobile-header-container .logo-subtitle {
+    font-size: 0.6em; /* Ukuran font disesuaikan */
+    text-align: left;
+    font-style: italic;
+  }
+}

@@ -886,7 +886,6 @@ const App = (() => {
       logoutUser();
       return;
     }
-
     if (!document.querySelector(".mobile-top-header")) {
       const mobileHeader = document.createElement("header");
       mobileHeader.className = "mobile-top-header";
@@ -894,10 +893,14 @@ const App = (() => {
             <div class="mobile-header-container">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="foto/ChatGPTlogokarangtaruna.png" alt="Logo Karang Taruna" />
-                        <span class="logo-main-text">Karang Taruna Banjarsari</span>
+                      
+                        <div class="logo-text">
+                           <h1 class="logo-main-text">A STORY ABOUT AN ORDINARY PERSON</h1>
+                           <p class="logo-subtitle">Random Thoughts and Everything Else</p>
+                        </div>
                     </a>
                 </div>
+                
                 <div class="mobile-header-actions">
                     <a href="#" id="search-trigger-mobile" aria-label="Cari">
                         <i class="fas fa-search"></i>
