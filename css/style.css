@@ -3519,22 +3519,22 @@ body[data-page-id="aspirasi"] .container {
 /* ======================================================= */
 
 @media (max-width: 768px) {
-  /* --- Perbaikan Hero Section --- */
+  /* --- Perbaikan Hero Section (INI BAGIAN YANG DIPERBARUI) --- */
   .hero-section {
-    padding: 25px 0 40px 0; /* Mengatur ulang padding agar lebih seimbang */
-    min-height: calc(100vh - 120px); /* Membuat section mengisi layar */
+    padding: 20px 0 30px 0; /* Padding atas & bawah sedikit disesuaikan */
+    min-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Memusatkan konten secara vertikal */
+    justify-content: center;
   }
 
   .hero-image {
-    width: 250px; /* Diperbesar dari 200px */
-    margin-bottom: 25px; /* Menambah jarak di bawah gambar */
+    width: 280px; /* Ukuran gambar diperbesar dari 250px */
+    margin-bottom: 15px; /* Jarak ke teks di bawahnya dikurangi dari 25px */
   }
 
   .hero-content p {
-    margin-bottom: 25px; /* Mengurangi jarak di bawah paragraf, menaikkan tombol */
+    margin-bottom: 25px;
   }
 
   /* --- Profesionalisasi Header Mobile --- */
@@ -3544,7 +3544,7 @@ body[data-page-id="aspirasi"] .container {
   }
 
   .mobile-header-container .logo a {
-    gap: 12px; /* Menambah jarak antara logo dan teks */
+    gap: 12px;
     align-items: center;
   }
 
@@ -3555,16 +3555,50 @@ body[data-page-id="aspirasi"] .container {
   }
 
   .mobile-header-container .logo-main-text {
-    font-size: 0.8em; /* Ukuran font disesuaikan agar rapi */
-    white-space: normal; /* Izinkan teks turun baris jika terlalu panjang */
+    font-size: 1em;
+    white-space: normal;
     line-height: 1.2;
     text-align: left;
     font-style: italic;
+    font-weight: 700;
+    color: var(--light-text);
   }
 
   .mobile-header-container .logo-subtitle {
-    font-size: 0.6em; /* Ukuran font disesuaikan */
+    font-size: 0.65em;
     text-align: left;
     font-style: italic;
+    display: block;
   }
+}
+/* Tambahkan di akhir file: css/style.css */
+
+/* === PERBAIKAN TAMPILAN KARTU ARTIKEL (HALAMAN KEGIATAN) === */
+
+/* 1. Membuat konten menjadi flex container agar bisa mendorong 'card-actions' ke bawah */
+.kegiatan-item .kegiatan-konten {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Memastikan konten mengisi seluruh tinggi kartu */
+}
+
+/* 2. Gaya untuk baris aksi baru yang berisi tombol */
+.card-actions {
+  margin-top: auto; /* Trik flexbox untuk mendorong elemen ini ke paling bawah */
+  padding-top: 15px; /* Memberi jarak dari paragraf deskripsi */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 3. Menghapus inline style dari JS dan mengaturnya di sini */
+.card-actions .reaction-buttons {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+/* 4. Mencegah tombol reaksi mewarisi gaya dari link */
+.card-actions .reaction-btn {
+  text-decoration: none;
 }

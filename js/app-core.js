@@ -267,11 +267,15 @@ const App = (() => {
       const dislikeBtn = e.target.closest(".dislike-btn");
 
       if (likeBtn && !likeBtn.disabled) {
+        // --- TAMBAHKAN BARIS INI ---
+        e.preventDefault();
         const container = likeBtn.closest("[data-content-id]");
         if (container) handleReaction(container.dataset.contentId, "like");
       }
 
       if (dislikeBtn && !dislikeBtn.disabled) {
+        // --- DAN TAMBAHKAN JUGA BARIS INI ---
+        e.preventDefault();
         const container = dislikeBtn.closest("[data-content-id]");
         if (container) handleReaction(container.dataset.contentId, "dislike");
       }

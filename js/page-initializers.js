@@ -184,40 +184,41 @@ App.initializers.kegiatan = async () => {
     return;
   }
 
+  // --- PERUBAHAN UTAMA ADA DI TEMPLATE INI ---
   const createKegiatanTemplate = (item) => {
+    // Membuat ID unik untuk setiap item reaksi
     const contentId =
-      item.link.split("slug=")[1] ||
+      item.link.split("slug=")[1]?.replace(/[^a-zA-Z0-9]/g, "_") ||
       `artikel_${new Date(item.tanggal).getTime()}`;
     return `
-    <div class="kegiatan-item-wrapper" data-content-id="${contentId}">
-      <a href="${
-        item.link
-      }" class="kegiatan-item animate-on-scroll" data-kategori="${
+    <a href="${
+      item.link
+    }" class="kegiatan-item animate-on-scroll" data-content-id="${contentId}" data-kategori="${
       item.kategori
     }" data-tanggal="${item.tanggal}">
-        <div class="kegiatan-foto">
-          <img src="${item.gambar}" alt="${
+      <div class="kegiatan-foto">
+        <img src="${item.gambar}" alt="${
       item.alt_gambar || "Gambar " + item.judul
     }" loading="lazy">
-        </div>
-        <div class="kegiatan-konten">
-          <h3>${item.judul}</h3>
-          <span class="kegiatan-meta">${new Date(
-            item.tanggal
-          ).toLocaleDateString("id-ID", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}</span>
-          <p>${item.deskripsi}</p>
-          <span class="kegiatan-tombol">Baca Selengkapnya</span>
-        </div>
-      </a>
-      <div class="reaction-buttons" style="padding: 0 20px 15px 20px; background-color: var(--card-bg); border-radius: 0 0 8px 8px; border-top: 1px solid var(--border-color);">
-          <button class="reaction-btn like-btn"><i class="fas fa-thumbs-up"></i> <span class="like-count">0</span></button>
-          <button class="reaction-btn dislike-btn"><i class="fas fa-thumbs-down"></i> <span class="dislike-count">0</span></button>
       </div>
-    </div>
+      <div class="kegiatan-konten">
+        <h3>${item.judul}</h3>
+        <span class="kegiatan-meta">${new Date(item.tanggal).toLocaleDateString(
+          "id-ID",
+          { day: "numeric", month: "long", year: "numeric" }
+        )}</span>
+        <p>${item.deskripsi}</p>
+        
+        <div class="card-actions">
+            <span class="kegiatan-tombol">Baca Selengkapnya</span>
+            <div class="reaction-buttons">
+                <button class="reaction-btn like-btn"><i class="fas fa-thumbs-up"></i> <span class="like-count">0</span></button>
+                <button class="reaction-btn dislike-btn"><i class="fas fa-thumbs-down"></i> <span class="dislike-count">0</span></button>
+            </div>
+        </div>
+
+      </div>
+    </a>
   `;
   };
 
@@ -246,7 +247,7 @@ App.initializers.kegiatan = async () => {
     // Panggil update UI untuk setiap artikel
     sortedData.forEach((item) => {
       const contentId =
-        item.link.split("slug=")[1] ||
+        item.link.split("slug=")[1]?.replace(/[^a-zA-Z0-9]/g, "_") ||
         `artikel_${new Date(item.tanggal).getTime()}`;
       App.updateReactionUI(contentId);
     });
