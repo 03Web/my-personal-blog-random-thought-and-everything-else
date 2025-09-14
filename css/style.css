@@ -3602,3 +3602,139 @@ body[data-page-id="aspirasi"] .container {
 .card-actions .reaction-btn {
   text-decoration: none;
 }
+/* =================================================== */
+/* === GAYA UNTUK FITUR "BACA SELENGKAPNYA"      === */
+/* =================================================== */
+
+.testimonial-body .full-text {
+  display: none; /* Sembunyikan teks lengkap secara default */
+}
+
+.testimonial-body.expanded .short-text {
+  display: none; /* Sembunyikan teks pendek saat dibuka */
+}
+
+.testimonial-body.expanded .full-text {
+  display: inline; /* Tampilkan teks lengkap saat dibuka */
+}
+
+.testimonial-body .read-more-btn {
+  display: inline;
+}
+
+.testimonial-body.expanded .read-more-btn {
+  display: none; /* Sembunyikan tombol saat sudah dibuka */
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 5px; /* Jarak dari teks */
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95em; /* Samakan dengan font body */
+  font-style: normal;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
+/* ========================================= */
+/* ===         GAYA HALAMAN ABOUT BARU   === */
+/* ========================================= */
+
+.about-page .about-subtitle {
+  font-size: 1.2em;
+  color: var(--dark-text);
+  font-style: italic;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.about-page blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  font-size: 1.1em;
+  color: var(--dark-text);
+  text-align: left;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.about-list li {
+  margin-bottom: 25px;
+}
+
+.about-list li strong {
+  font-size: 1.2em;
+  color: var(--primary-color);
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* --- TIMELINE STYLE --- */
+.timeline {
+  position: relative;
+  max-width: 750px;
+  margin: 30px auto;
+  padding-left: 30px; /* Ruang untuk ikon */
+  border-left: 3px solid var(--border-color); /* Garis waktu utama */
+}
+
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -46px; /* Posisi ikon di tengah garis */
+  top: 0;
+  width: 50px;
+  height: 50px;
+  background-color: var(--card-bg);
+  border: 3px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-icon {
+  background-color: var(--primary-color);
+  color: var(--dark-bg);
+  transform: scale(1.1);
+}
+
+.timeline-content {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.timeline-content h4 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  color: var(--light-text);
+}
+
+.timeline-content p {
+  font-size: 1em;
+  color: var(--dark-text);
+  font-style: normal;
+}

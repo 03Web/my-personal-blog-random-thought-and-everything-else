@@ -458,37 +458,45 @@ App.initializers.artikel = async () => {
     const response = await fetch(artikelPath);
     if (!response.ok)
       throw new Error(`Gagal memuat konten artikel: ${response.statusText}`);
+
+    // LANGKAH PENTING: Langsung ambil seluruh konten HTML
     const artikelHTML = await response.text();
 
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(artikelHTML, "text/html");
+    // TEMUKAN JUDUL DARI DATA JSON (lebih andal)
+    // Pastikan data kegiatan sudah dimuat atau muat sekarang
+    const kegiatanData = await App.fetchData("kegiatan", "data/kegiatan.json");
+    const artikelInfo = kegiatanData.find((item) => item.link.includes(slug));
 
-    const title = doc.querySelector("h2").textContent;
-    const date = doc.querySelector(".kegiatan-meta").textContent;
-    const contentContainer = doc.querySelector(".artikel-konten");
-    const words = contentContainer.innerText.split(/\s+/).length;
-    const readingTime = Math.ceil(words / 200);
+    const title = artikelInfo ? artikelInfo.judul : "Artikel";
+    document.title = `${title} - My Personal Blog`;
 
-    document.title = `${title} - Karang Taruna Banjarsari`;
-    container.innerHTML = `
-        <div class="artikel-header" data-content-id="${slug}">
-            <h1>${title}</h1>
-            <div class="artikel-meta-info">
-                <span><i class="fas fa-calendar-alt"></i> ${date}</span>
-                <span><i class="fas fa-clock"></i> Estimasi ${readingTime} menit baca</span>
-            </div>
-            <div class="reaction-buttons">
+    // LANGSUNG MASUKKAN SELURUH KONTEN ARTIKEL KE DALAM CONTAINER
+    container.innerHTML = artikelHTML;
+
+    // Tambahkan tombol reaksi secara dinamis
+    const artikelKontenDiv = container.querySelector(".artikel-konten");
+    if (artikelKontenDiv) {
+      const reactionButtonsHTML = `
+            <div class="reaction-buttons" data-content-id="${slug}" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color);">
               <button class="reaction-btn like-btn"><i class="fas fa-thumbs-up"></i> <span class="like-count">0</span></button>
               <button class="reaction-btn dislike-btn"><i class="fas fa-thumbs-down"></i> <span class="dislike-count">0</span></button>
             </div>
-        </div>
-        ${doc.querySelector(".slideshow-container")?.outerHTML || ""}
-        <div class="artikel-konten">${contentContainer.innerHTML}</div>
-        <a href="kegiatan.html" class="tombol-kembali"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Kegiatan</a>
-    `;
+        `;
+      artikelKontenDiv.insertAdjacentHTML("beforeend", reactionButtonsHTML);
+    }
+
+    // Tambahkan tombol kembali
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
+        <a href="kegiatan.html" class="tombol-kembali" style="margin-top: 30px;">
+            <i class="fas fa-arrow-left"></i> Kembali ke Daftar Artikel
+        </a>
+    `
+    );
 
     initSlideshow();
-    App.updateReactionUI(slug); // Panggil update UI untuk artikel ini
+    App.updateReactionUI(slug);
 
     const commentSectionHTML = `
       <div class="container" id="comment-section-container">

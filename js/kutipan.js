@@ -6,13 +6,11 @@ const KutipanApp = (() => {
     const sorter = document.getElementById("kutipan-sorter");
     const kategoriFilter = document.getElementById("kategori-filter");
 
-    // Pastikan semua elemen penting ada sebelum melanjutkan
     if (!container || !sorter || !kategoriFilter) {
       console.error("Elemen penting untuk halaman kutipan tidak ditemukan.");
       return;
     }
 
-    // Mengambil data menggunakan fungsi dari app-core.js
     const data = await App.fetchData("testimonials", "data/testimonials.json");
     if (!data) {
       container.innerHTML =
@@ -20,21 +18,21 @@ const KutipanApp = (() => {
       return;
     }
 
-    // Fungsi untuk membuat satu kartu kutipan (HTML template)
     const createKutipanTemplate = (item) => {
-      // Placeholder untuk avatar jika tidak ada
       const avatarHTML = item.avatar
         ? `<img src="${item.avatar}" alt="Avatar ${item.name}" loading="lazy">`
         : `<div class="testimonial-avatar-placeholder"><i class="fas fa-quote-left"></i></div>`;
 
-      // Link sumber hanya ditampilkan jika linknya bukan '#'
       const linkHTML =
         item.link && item.link !== "#"
           ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> Lihat Sumber</a>`
           : "";
 
+      // PERUBAHAN: Menambahkan data-fulltext pada paragraf
       return `
-        <div class="testimonial-card animate-on-scroll" data-content-id="${item.id}" style="width: 100%; max-width: 700px; margin: 0 auto;">
+        <div class="testimonial-card animate-on-scroll" data-content-id="${
+          item.id
+        }" style="width: 100%; max-width: 700px; margin: 0 auto;">
             <div class="testimonial-header">
                 ${avatarHTML}
                 <div class="testimonial-user">
@@ -43,7 +41,7 @@ const KutipanApp = (() => {
                 </div>
             </div>
             <div class="testimonial-body" style="font-size: 1.05em; line-height: 1.7;">
-                <p>${item.text}</p>
+                <p data-fulltext="${encodeURIComponent(item.text)}"></p> 
             </div>
             <div class="testimonial-footer">
                 <div class="reaction-buttons">
@@ -56,25 +54,70 @@ const KutipanApp = (() => {
       `;
     };
 
-    // Fungsi utama untuk memfilter, mengurutkan, dan menampilkan data
+    // FUNGSI BARU untuk inisialisasi "Baca Selengkapnya"
+    const initializeReadMore = () => {
+      const charLimit = 150; // Batas karakter sebelum dipotong
+      const kutipanCards = container.querySelectorAll(".testimonial-card");
+
+      kutipanCards.forEach((card) => {
+        const body = card.querySelector(".testimonial-body");
+        const p = body.querySelector("p");
+        // Menggunakan decodeURIComponent untuk mendapatkan teks asli kembali
+        const fullText = decodeURIComponent(p.getAttribute("data-fulltext"));
+
+        // Membersihkan tag <br> untuk perhitungan panjang yang akurat
+        const textOnly = fullText.replace(/<br\s*\/?>/gi, " ");
+
+        if (textOnly.length > charLimit) {
+          const shortText = textOnly.substring(0, charLimit);
+          // Menggunakan innerHTML untuk merender <br>
+          p.innerHTML = `
+            <span class="short-text">${shortText.replace(
+              /\n/g,
+              "<br>"
+            )}...</span>
+            <span class="full-text">${fullText}</span>
+            <button class="read-more-btn">selengkapnya</button>
+          `;
+
+          const readMoreBtn = p.querySelector(".read-more-btn");
+          readMoreBtn.addEventListener("click", (e) => {
+            e.preventDefault(); // Mencegah link default jika ada
+            e.stopPropagation(); // Mencegah event lain terpicu
+
+            // Tutup semua kartu lain yang sedang terbuka
+            kutipanCards.forEach((otherCard) => {
+              if (otherCard !== card) {
+                otherCard
+                  .querySelector(".testimonial-body")
+                  .classList.remove("expanded");
+              }
+            });
+            // Buka atau tutup kartu yang di-klik
+            body.classList.toggle("expanded");
+          });
+        } else {
+          // Jika teks pendek, langsung tampilkan seluruhnya
+          p.innerHTML = fullText;
+        }
+      });
+    };
+
     const renderKutipan = () => {
       const sortOrder = sorter.value;
       const selectedKategori = kategoriFilter.value;
 
-      // 1. Filter berdasarkan kategori yang dipilih
       const filteredData = data.filter(
         (item) =>
           selectedKategori === "semua" || item.kategori === selectedKategori
       );
 
-      // 2. Urutkan data yang sudah difilter
       const sortedData = [...filteredData].sort((a, b) => {
         const dateA = new Date(a.tanggal);
         const dateB = new Date(b.tanggal);
         return sortOrder === "terbaru" ? dateB - dateA : dateA - dateB;
       });
 
-      // 3. Tampilkan hasilnya ke halaman
       App.renderItems(
         container,
         sortedData,
@@ -82,15 +125,15 @@ const KutipanApp = (() => {
         "<p style='text-align: center;'>Tidak ada kutipan yang cocok dengan filter Anda.</p>"
       );
 
-      // 4. Panggil fungsi untuk update jumlah like/dislike dari Firebase
+      // PANGGIL FUNGSI BARU SETELAH RENDER
+      initializeReadMore();
+
       sortedData.forEach((item) => App.updateReactionUI(item.id));
     };
 
-    // Tambahkan event listener ke tombol filter dan sortir
     sorter.addEventListener("change", renderKutipan);
     kategoriFilter.addEventListener("change", renderKutipan);
 
-    // Tampilkan kutipan untuk pertama kali saat halaman dimuat
     renderKutipan();
   };
 
@@ -99,8 +142,6 @@ const KutipanApp = (() => {
   };
 })();
 
-// Daftarkan fungsi init dari KutipanApp ke dalam App.initializers
-// Ini penting agar script ini bisa dijalankan oleh app-core.js
 if (typeof App !== "undefined" && App.initializers) {
   App.initializers.kutipan = KutipanApp.init;
 }
