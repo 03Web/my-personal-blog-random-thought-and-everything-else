@@ -121,6 +121,19 @@ const KomentarApp = (() => {
     const textarea = form.querySelector("#comment-pesan");
     const actions = form.querySelector(".comment-actions");
 
+    // === BAGIAN YANG DIPERBAIKI ===
+    // Kode ini ditambahkan untuk memunculkan tombol "Kirim" dan input lainnya
+    // ketika pengguna mengklik atau mulai mengetik di area komentar.
+    textarea.addEventListener("focus", () => {
+      if (actions) {
+        actions.style.display = "flex";
+        const namaInput = form.querySelector("#comment-nama");
+        // Input nama lama tetap disembunyikan karena kita sudah menggunakan modal
+        if (namaInput) namaInput.style.display = "none";
+      }
+    });
+    // =============================
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const submitButton = form.querySelector(".comment-submit-btn");
@@ -154,6 +167,10 @@ const KomentarApp = (() => {
           .push(dataToSend)
           .then(() => {
             form.reset();
+            // Sembunyikan kembali actions setelah berhasil mengirim agar tampilan bersih
+            if (actions) {
+              actions.style.display = "none";
+            }
           })
           .catch((error) => {
             console.error("Firebase Error:", error);
@@ -167,13 +184,6 @@ const KomentarApp = (() => {
         console.log("Interaksi dibatalkan oleh pengguna.");
       }
     });
-
-    // Tampilkan 'actions' dan sembunyikan input nama lama
-    if (actions) {
-      actions.style.display = "flex";
-      const namaInput = form.querySelector("#comment-nama");
-      if (namaInput) namaInput.style.display = "none";
-    }
   };
 
   const init = () => {

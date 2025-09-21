@@ -29,7 +29,9 @@
     <main>
       <div class="container about-page">
         <section class="animate-on-scroll">
-          <h2>Amazia Kristanto: Sebuah Catatan kecil tentang warga sipil BIASA.</h2>
+          <h2>
+            Amazia Kristanto: Sebuah Catatan kecil tentang warga sipil BIASA.
+          </h2>
           <p class="about-subtitle">
             Jika Anda melihat Kartu Tanda Mahasiswa saya, di sana tertulis saya
             seorang mahasiswa Teknik Informatika. Tapi jujur saja, kartu itu
@@ -180,6 +182,35 @@
             <br />
             <strong><em>Anjayyyyy.</em></strong>
           </p>
+        </section>
+      </div>
+      <div class="container" id="comment-section-container">
+        <hr class="separator animate-on-scroll" />
+        <section class="comment-section animate-on-scroll">
+          <h3><span id="comment-count">0</span> Komentar</h3>
+          <form id="comment-form-element" class="comment-form">
+            <div class="comment-avatar-input">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="comment-input-wrapper">
+              <textarea
+                id="comment-pesan"
+                placeholder="Tambahkan komentar..."
+                required
+              ></textarea>
+              <div class="comment-actions">
+                <input
+                  type="text"
+                  id="comment-nama"
+                  placeholder="Nama (opsional)"
+                />
+                <button type="submit" class="comment-submit-btn">Kirim</button>
+              </div>
+            </div>
+          </form>
+          <div id="comment-list-container" class="comment-list">
+            <p>Memuat komentar...</p>
+          </div>
         </section>
       </div>
     </main>

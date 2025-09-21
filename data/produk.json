@@ -2,26 +2,27 @@
   {
     "id": "buku-carl-sagan-cosmos",
     "nama": "Buku Bekas: 'Cosmos' oleh Carl Sagan (Kondisi Baik)",
-    "harga": 85000,
-    "gambar": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347353032l/55030.jpg",
+    "gambar": "https://03web.github.io/amaz03/foto/books/Screenshot%20from%202025-08-04%2015-41-51.png",
+    "harga": 85000000,
     "gambar_produk": [
-      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347353032l/55030.jpg",
-      "https://upload.wikimedia.org/wikipedia/id/c/c1/Cosmos-Sagan.jpg"
+      "https://03web.github.io/amaz03/foto/books/Screenshot%20from%202025-08-04%2015-41-51.png",
+      "https://03web.github.io/amaz03/foto/books/Screenshot%20from%202025-08-04%2015-41-51.png"
     ],
     "penjual_wa": "6285876983793",
     "rating": 4.9,
     "terjual": "1",
-    "lokasi": "Semarang",
+    "lokasi": "temanggung",
     "kategori": "buku",
     "deskripsi": "Edisi lawas dari buku 'Cosmos' karya Carl Sagan. Sebuah mahakarya yang menjelajahi alam semesta dengan bahasa puitis. Kondisi 8/10, ada sedikit coretan stabilo di beberapa halaman, tidak ada halaman yang sobek. Wajib dimiliki bagi siapa saja yang terpesona oleh bintang."
   },
   {
     "id": "keyboard-mechanical-bekas",
     "nama": "Keyboard Mechanical VortexSeries GT-8 (Brown Switch)",
-    "harga": 250000,
-    "gambar": "https://images.tokopedia.net/img/cache/700/VqbcmM/2022/1/27/c2c5c2d3-0d04-4f4d-8e47-4f6534570d5e.jpg",
+    "harga": 2500000,
+    "gambar": "https://pbs.twimg.com/media/EIuF0FrWoAEJivb?format=jpg&name=large",
     "gambar_produk": [
-      "https://images.tokopedia.net/img/cache/700/VqbcmM/2022/1/27/c2c5c2d3-0d04-4f4d-8e47-4f6534570d5e.jpg"
+      "https://pbs.twimg.com/media/EIuF0FrWoAEJivb?format=jpg&name=large",
+      "https://pbs.twimg.com/media/Fvn7cOlWAAA9G_S?format=jpg&name=large"
     ],
     "penjual_wa": "6285876983793",
     "rating": 4.8,
@@ -33,10 +34,12 @@
   {
     "id": "buku-madilog-tan-malaka",
     "nama": "Buku Preloved: 'Madilog' oleh Tan Malaka",
-    "harga": 55000,
-    "gambar": "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/10/20/6e226457-3729-4d69-8f0a-58f7c9e03d42.jpg",
+    "harga": 550000,
+    "gambar": "https://pbs.twimg.com/media/G0UKfDqXAAAKOLP?format=jpg&name=4096x4096",
     "gambar_produk": [
-      "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/10/20/6e226457-3729-4d69-8f0a-58f7c9e03d42.jpg"
+      "https://pbs.twimg.com/media/G0UKfDqXAAAKOLP?format=jpg&name=4096x4096",
+      "https://pbs.twimg.com/media/G07rodLaEAAIRr1?format=jpg&name=large",
+      "https://pbs.twimg.com/media/G1CXALNbQAA-j_j?format=jpg&name=medium"
     ],
     "penjual_wa": "6285876983793",
     "rating": 5.0,
@@ -46,12 +49,14 @@
     "deskripsi": "Salah satu buku paling fundamental dari Bapak Republik, Tan Malaka. Mengajarkan cara berpikir logis dan dialektis. Kondisi masih sangat bagus, hanya sedikit menguning di bagian pinggir kertas karena usia. Sampul disampul plastik."
   },
   {
-    "id": "raspberry-pi-3b",
+    "id": "raspberry-pi-3b made in china",
     "nama": "Raspberry Pi 3 Model B+ (Batangan)",
-    "harga": 450000,
-    "gambar": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//95/MTA-3129334/raspberry-pi_raspberry-pi-3-model-b--_full02.jpg",
+    "harga": 5000000,
+    "gambar": "https://pbs.twimg.com/media/G1QGjjJbQAEWPUe?format=jpg&name=900x900",
     "gambar_produk": [
-      "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//95/MTA-3129334/raspberry-pi_raspberry-pi-3-model-b--_full02.jpg"
+      "https://pbs.twimg.com/media/G1QGjjJbQAEWPUe?format=jpg&name=900x900",
+      "https://pbs.twimg.com/media/G1QGjr6bQAA9sgl?format=jpg&name=900x900",
+      "https://pbs.twimg.com/media/G1QGj2PboAAFVH2?format=jpg&name=900x900"
     ],
     "penjual_wa": "6285876983793",
     "rating": 4.7,
@@ -63,10 +68,12 @@
   {
     "id": "jasa-install-ulang",
     "nama": "Jasa Install Ulang OS (Windows/Linux)",
-    "harga": 75000,
-    "gambar": "https://media.npr.org/assets/img/2014/04/04/windows-xp-2_wide-79f642468032778c80b62c47b5b5b03577d6c6e1.jpg?s=1400",
+    "harga": 777000,
+    "gambar": "https://pbs.twimg.com/media/GrT8T5cXsAEesFk?format=jpg&name=large",
     "gambar_produk": [
-      "https://media.npr.org/assets/img/2014/04/04/windows-xp-2_wide-79f642468032778c80b62c47b5b5b03577d6c6e1.jpg?s=1400"
+      "https://pbs.twimg.com/media/GzPkYU8XkAACaZ4?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GrT8T5cXsAEesFk?format=jpg&name=large",
+      "https://pbs.twimg.com/media/GrC0wfqXAAA7zua?format=jpg&name=medium"
     ],
     "penjual_wa": "6285876983793",
     "rating": 5.0,
