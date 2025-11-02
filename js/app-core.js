@@ -453,10 +453,14 @@ const App = (() => {
               Accept: "application/json",
             },
           });
-
+          // ini untuk mengakifkan form login
           if (response.ok) {
             sessionStorage.setItem("isLoggedIn", "true");
-            showContributionModal();
+            overlay.classList.add("hidden");
+            // untuk menonaktifkan form login pilih salah satu saja atas atau bawah
+            // if (response.ok) {
+            // sessionStorage.setItem("isLoggedIn", "true");
+            // showContributionModal();
           } else {
             throw new Error("Gagal mengirim data.");
           }
