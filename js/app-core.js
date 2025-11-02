@@ -355,7 +355,7 @@ const App = (() => {
 
   // === LAYAR SELAMAT DATANG (WELCOME SCREEN) ===
   function initWelcomeScreen() {
-    const LOGIN_FORM_ENABLED = false;
+    const LOGIN_FORM_ENABLED = true; // Ubah ke false untuk non-aktifkan form login
 
     const overlay = document.getElementById("welcome-overlay");
     if (!overlay) return;
@@ -423,7 +423,7 @@ const App = (() => {
             "Untuk Masuk Web Pastikan Semua Form Terisi⚠!! Terserah Mau di Isi Apa Saja Bebas.";
         } else {
           msg.innerText =
-            "TERIMAKASIH🙏, Sekarang Anda Bisa Masuk Web Karang Taruna Banjarsari.";
+            "TERIMAKASIH🙏, Sekarang Anda Bisa Masuk Web amazia kristanto-random-thought-and-everything-else";
           msg.style.color = "#92ff92";
           btn.disabled = false;
           btn.classList.add("no-shift");
@@ -443,7 +443,7 @@ const App = (() => {
         btn.disabled = true;
 
         const formData = new FormData(form);
-        const FORMSPREE_URL = "https://formspree.io/f/myzpjnqg";
+        const FORMSPREE_URL = "https://formspree.io/f/mpwllonq";
 
         try {
           const response = await fetch(FORMSPREE_URL, {

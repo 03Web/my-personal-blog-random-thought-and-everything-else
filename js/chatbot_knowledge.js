@@ -6,14 +6,50 @@ const KNOWLEDGE_BASE = `
 
         ---
 
+
         TENTANG BLOG DAN PENULIS (DARI HALAMAN 'ABOUT'):
-        - Siapa Amazia Kristanto?: Seorang warga sipil biasa, mahasiswa Teknik Informatika, dan pengamat paruh waktu. Ia mendeskripsikan dirinya sering terjebak dalam pengamatan absurd terhadap hal-hal di sekitarnya.
-        - Isi Kepala Penulis: Pikirannya sering melompat dari konsep rumit seperti entropi ke pertanyaan absurd seperti "apakah benar Hitler mati di Garut?". Blog ini adalah cara untuk menangkap pikiran-pikiran liar tersebut.
-        - Filosofi Blog:
-            1.  **Pergulatan, Bukan Pencerahan:** Blog ini bukan tentang memberi jawaban, melainkan tentang merayakan indahnya sebuah pertanyaan.
-            2.  **Kejujuran yang Mungkin Tidak Nyaman:** Fokus utama blog adalah membongkar banyak hal untuk memahami fondasinya, dengan selalu bertanya "kenapa?".
-            3.  **Merayakan "Saya Tidak Tahu":** Blog ini adalah monumen untuk merayakan ketidaktahuan sebagai awal dari pengetahuan sejati.
-        - Ajakan untuk Pembaca: "Selamat Datang di Warung Kopi Digital Saya. Ambil kursi. Mari kita bingung bersama-sama."
+    Amazia Kristanto: Sebuah Catatan kecil tentang warga sipil BIASA.
+Jika Anda melihat Kartu Tanda Mahasiswa saya, di sana tertulis saya seorang mahasiswa Teknik Informatika. Tapi jujur saja, kartu itu tidak menceritakan setengah dari kisahnya. Sebelum saya pusing dengan error syntax dan titik koma, saya lebih dulu pusing dengan slip gaji dan surat kontrak kerja.
+
+Ini adalah cerita tentang perjalanan dua tahun yang membawa saya ke sini.
+
+Roadtrip Dua Tahun Sebelum Mengenal Titik Koma (;)
+Jalan saya menuju bangku kuliah itu banyak memutar. Sebuah roadtrip dadakan selama dua tahun untuk mencari sesuatu yang saya sendiri tidak tahu apa.
+
+Episode 1: Sopir Mebel dan Filosofi Punggung Pegal
+Pemberhentian pertama: menjadi sopir pengirim mebel. Profesi ini hanya saya jalani 3 bulan, tapi pelajarannya setara satu semester. Jam kerja resminya 8 pagi sampai 7 malam. Realitanya? Kalau ada kiriman, jam 10 malam baru bisa pulang. Gajinya di bawah UMR Temanggung, tanpa BPJS, dan jatah libur hanya dua kali sebulan. Menurut saya yang waktu itu saya sok idealis, hitung-hitungannya tidak masuk akal. Jadi, saya putuskan untuk resign. Hhhh.
+
+Episode 2 & 3: Tur Antar Pabrik
+Saya kemudian banting setir ke dunia pabrik. Pertama, di pabrik barecore kayu di Maron. Setelah 6 bulan kontrak habis, supervisor meminta saya perpanjang. Tapi saya tolak. Anjay, sok jual mahal banget ya? Wkwkwk. Rasanya, ini belum tempat saya. Lalu lanjut ke pabrik triplek di Kranggan. Di sini, gajinya lumayan untuk ukuran UMR Temanggung. Cukup adil. Tapi lagi-lagi, saat kontrak 6 bulan selesai, ada suara di kepala yang bilang, "Cari lagi. Ini juga bukan."
+
+Episode 4: Keberuntungan Acak di Ungaran
+Ini mungkin episode paling aneh. Di tengah kebingungan sebagai anak laki-laki yang "nganggur" di rumah, saya iseng melamar ke PT. Cimory di Ungaran. Padahal, saya tidak benar-benar nganggur. Di rumah ada ladang kopi yang hasilnya lebih dari cukup untuk hidup setahun. Ada pekerjaan rutin: cari rumput, nyelep (menggiling) kopi, jadi sopir keluarga. Tapi entah kenapa, ada perasaan gelisah. Ada "sesuatu" yang kurang kalau tidak bekerja di luar. Bukan karena sok-sokan, tapi ada kekosongan yang sulit digambarkan. Dan entah bagaimana, di antara lautan pelamar, saya yang beruntung terpilih masuk Cimory. Gajinya? Standar UMR Semarang. Kalau ada lembur dan kerja 12 jam, ya bisa dibilang "lebih cukup". Tapi, "lebih cukup" bukan berarti "sangat cukup", wkwkwk.
+
+Jadi, Kenapa Blog Ini Ada?
+Dua tahun itu—debu jalanan, bau kayu dari pabrik, dinginnya tol Ungaran di malam hari, obrolan di kantin dengan sesama buruh, hingga pertanyaan eksistensial "kenapa gue nggak pernah betah?"—semuanya menumpuk di kepala.
+
+"Hasilnya? Pikiran saya jadi seperti browser dengan 100 tab terbuka, semuanya saling berteriak minta perhatian. Blog ini adalah cara saya membereskan kekacauan itu. Ini adalah tempat sampah pikiran saya, tempat saya menuangkan semuanya sebelum mereka berkolaborasi menggerogoti kewarasan saya."
+Di sini saya mencoba memahami "bug" dan "fitur" dari program bernama kehidupan, dari sudut pandang seorang yang pernah jadi kuli angkut, operator mesin, dan sekarang (calon) penulis kode.
+
+Apa yang Akan Anda Temukan di Sini?
+Pergulatan, Bukan Pencerahan
+Saya tidak punya jawaban. Saya hanya punya lebih banyak pertanyaan. Mari kita bingung bersama-sama.
+
+Kejujuran
+Saya membuat web/blog pribadi ini bukan untuk menginspirasi atau menggurui. Saya membuatnya untuk jujur pada diri sendiri,mengeluarkan sampah yang ada di kepala saya dan tentunya ada waktu luang untuk membuatnya. Kadang konyol, kadang serius, tapi selalu nyata.
+
+Perayaan "Saya Tidak Tahu"
+Menerima bahwa kita tidak tahu segalanya adalah awal dari pengetahuan sejati. Blog ini adalah monumen untuk merayakan ketidaktahuan itu.
+
+Selamat Datang di Warung Kopi Digital Saya.
+Silakan baca, komentar, masukan, kritikan yang bisa anda sampaikan entah itu sebagai anonim,teman amazia,nama atau apa saja. Mari kita tertawa,berpikir dan bingung sama-sama hhhh.
+Anjayyyyy.
+
+--- 
+        --- HALAMAN GALERI ---
+        - ada beberapa foto saya mulai dari kecil sampai sekarang.
+        - vidio saya pribadi tentang saya juga ada di halaman galeri.
+        - ya itu saja sih isinya hehehe.
 
         ---
 

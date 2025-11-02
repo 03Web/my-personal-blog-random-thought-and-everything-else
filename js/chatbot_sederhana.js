@@ -368,43 +368,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Fungsi untuk menangani pengiriman pesan ---
   // (Tidak ada perubahan di fungsi ini)
+  // --- Fungsi untuk menangani pengiriman pesan (VERSI AKTIF) ---
   const handleSendMessage = async () => {
     const question = chatInput.value.trim();
     if (!question) return;
 
     addMessageToWindow(question, "user-message");
     chatInput.value = "";
-    addMessageToWindow("", "bot-message", true); // Menampilkan indikator loading
 
-    // Tampilkan pesan "Maaf, API chatbot..."
-    const botMessageDiv = addMessageToWindow(
-      "Maaf, API chatbot sedang habis karena saya malas dan miskin untuk mengisinya 😄 Jadi untuk sementara chatbot tidak bisa digunakan. Kalau mau menyumbang boleh kontak ya! 😂",
-      "bot-message"
-    );
+    // 1. Tampilkan indikator loading (titik-titik)
+    addMessageToWindow("", "bot-message", true);
 
-    // Hapus indikator loading (jika ada) karena kita sudah menampilkan pesan default
-    document.getElementById("loading-indicator")?.remove();
-
-    /*
-    // --- KOMENTARI BAGIAN INI UNTUK MENONAKTIFKAN CHATBOT ---
-    // Hapus indikator loading
-    document.getElementById("loading-indicator")?.remove(); 
-
-    // Panggil AI (tetap panggil, tapi hasilnya tidak kita pakai jika ingin nonaktif)
+    // 2. Panggil fungsi AI-mu yang aman
     const answer = await getAiResponse(question);
 
-    // Ganti pesan "Maaf..." dengan jawaban AI yang asli
-    botMessageDiv.textContent = answer;
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-    // --- HINGGA DI SINI ---
-    */
+    // 3. Hapus indikator loading
+    document.getElementById("loading-indicator")?.remove();
 
-    /* // --- JIKA INGIN MENGAKTIFKAN CHATBOT, HAPUS BLOK DI ATAS DAN GUNAKAN INI ---
-     const answer = await getAiResponse(question);
-     document.getElementById("loading-indicator")?.remove(); // Hapus indikator loading
-     addMessageToWindow(answer, "bot-message");
-    // --- BATAS AKTIFKAN CHATBOT ---
-    */
+    // 4. Tampilkan jawaban asli dari AI
+    addMessageToWindow(answer, "bot-message");
   };
 
   // --- Fungsi untuk menambahkan pesan ke jendela chat ---
