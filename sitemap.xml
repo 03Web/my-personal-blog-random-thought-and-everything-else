@@ -1,35 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://karangtarunabanjarsari.fun/index.html</loc>
+    <loc>https://www.amazthegreatape.com/index.html</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://karangtarunabanjarsari.fun/about.html</loc>
+    <loc>https://www.amazthegreatape.com/about.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://karangtarunabanjarsari.fun/galeri.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://karangtarunabanjarsari.fun/kegiatan.html</loc>
+    <loc>https://www.amazthegreatape.com/kegiatan.html</loc>
     <priority>0.9</priority>
   </url>
- <url>
-    <loc>https://karangtarunabanjarsari.fun/aspirasi.html</loc>
+  <url>
+    <loc>https://www.amazthegreatape.com/galeri.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://karangtarunabanjarsari.fun/kontak.html</loc>
+    <loc>https://www.amazthegreatape.com/kontak.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://karangtarunabanjarsari.fun/artikel.html?slug=gebyar-merdeka-2025</loc>
-    <priority>0.9</priority>
+    <loc>https://www.amazthegreatape.com/toko.html</loc>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://karangtarunabanjarsari.fun/artikel.html?slug=kegiatan-17agustus</loc>
-    <priority>0.9</priority>
+    <loc>https://www.amazthegreatape.com/aspirasi.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=Share-Education/apa_itu_produktifitas</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=Share-Education/basic-dasar-fundamental-dari-ekonomi-dll</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=Share-Education/distribusi-fiat-up-to-down</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=history/Indonesia-Apa-Adanya-Dari-Kolonialisme-Hingga-Panggung-Demokrasi</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=history/tan-malaka-madilog</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=history/Why-HIstory-Is-Imortent</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=history/alasan-nazi-membenci-yahudi</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=keresahan/From-the-beginning-of-history-the-few-have-always-exploited-the-many-This-is-cornerstone-of-civilization</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=keresahan/onepiece-pemerintah</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=keresahan/Gap-Pengetahuan-Dunia-Primitif-Modern-Part1</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=keresahan/Gap-Pengetahuan-Dunia-Primitif-Modern-Part2</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=keresahan/Hirarki-Ilmu-Pengetahuan</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=keresahan/Eksplorasi-Mendalam-Tentang-ROhJiwa</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=keresahan/Brain-Root</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=summary-books/The-Two-Gods-of-Leviathan</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=summary-books/The-Two-Gods-of-Leviathan-part2</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=science/What-Is-Science</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=philosophy/philosophy-stoic</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=notes-random/What-Is-Love</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=notes-random/Infinity-Stone-Jagoan-Indonesia -Sharlini-Eriza-Putri-Endgame</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=notes-random/kisah-tragis-alan-turing</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=notes-random/Endgame-Berpikir-dan-Bernegara-dari-Kacamata-Filsafat-FBudi-Hardiman-Chronicles</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/Why-Boredom-is-Good-For-You</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/The-Problem-With-IQ-Tests</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/The-success-Paradox</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/Korupsi-Tidak-Mengenal-Usia</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.amazthegreatape.com/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/lampu-merah-pengangguran-sarjana</loc>
+    <priority>0.8</priority>
   </url>
 </urlset>
