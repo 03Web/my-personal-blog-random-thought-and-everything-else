@@ -355,8 +355,10 @@ const App = (() => {
 
   // === LAYAR SELAMAT DATANG (WELCOME SCREEN) ===
   function initWelcomeScreen() {
-    const LOGIN_FORM_ENABLED = true; // Ubah ke false untuk non-aktifkan form login
-
+    /* ---------------- PENGATURAN FORM LOGIN ---------------- */
+    // Ubah ke false untuk non-aktifkan form login
+    const LOGIN_FORM_ENABLED = false;
+    /* -------------------------------------------------------------------- */
     const overlay = document.getElementById("welcome-overlay");
     if (!overlay) return;
 
@@ -457,10 +459,6 @@ const App = (() => {
           if (response.ok) {
             sessionStorage.setItem("isLoggedIn", "true");
             overlay.classList.add("hidden");
-            // untuk menonaktifkan form login pilih salah satu saja atas atau bawah
-            // if (response.ok) {
-            // sessionStorage.setItem("isLoggedIn", "true");
-            // showContributionModal();
           } else {
             throw new Error("Gagal mengirim data.");
           }
