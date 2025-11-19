@@ -372,10 +372,11 @@ const App = (() => {
       return;
     }
 
-    if (!isIndexPage) {
-      logoutUser();
-      return;
-    }
+    // if (!isIndexPage) {
+    //   logoutUser();
+    //   return;
+    // }
+    /* ini untuk menonaktifkan pengecekan halaman index agar tidak memaksakan harus login */
 
     if (!LOGIN_FORM_ENABLED) {
       sessionStorage.setItem("isLoggedIn", "true");
@@ -888,10 +889,12 @@ const App = (() => {
       window.location.pathname.includes("index.html");
     const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
-    if (!isLoggedIn && !isIndexPage) {
-      logoutUser();
-      return;
-    }
+    // if (!isLoggedIn && !isIndexPage) {
+    //   logoutUser();
+    //   return;
+    // }
+    /* ini untuk menonaktifkan pengecekan halaman index agar tidak memaksakan harus login */
+    
     if (!document.querySelector(".mobile-top-header")) {
       const mobileHeader = document.createElement("header");
       mobileHeader.className = "mobile-top-header";
