@@ -476,10 +476,16 @@ App.initializers.artikel = async () => {
     // Tambahkan tombol reaksi secara dinamis
     const artikelKontenDiv = container.querySelector(".artikel-konten");
     if (artikelKontenDiv) {
+const currentURL = window.location.href; // Ambil URL lengkap saat ini
+      
       const reactionButtonsHTML = `
-            <div class="reaction-buttons" data-content-id="${slug}" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+            <div class="reaction-buttons" data-content-id="${slug}" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 15px;">
               <button class="reaction-btn like-btn"><i class="fas fa-thumbs-up"></i> <span class="like-count">0</span></button>
               <button class="reaction-btn dislike-btn"><i class="fas fa-thumbs-down"></i> <span class="dislike-count">0</span></button>
+              
+              <button class="reaction-btn share-btn" onclick="navigator.clipboard.writeText('${currentURL}').then(() => alert('Link artikel berhasil disalin! Silakan tempel (paste) di WhatsApp atau Medsos.'));">
+                <i class="fas fa-share-alt"></i> Bagikan
+              </button>
             </div>
         `;
       artikelKontenDiv.insertAdjacentHTML("beforeend", reactionButtonsHTML);
