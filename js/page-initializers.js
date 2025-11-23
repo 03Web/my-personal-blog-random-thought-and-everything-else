@@ -476,8 +476,8 @@ App.initializers.artikel = async () => {
     // Tambahkan tombol reaksi secara dinamis
     const artikelKontenDiv = container.querySelector(".artikel-konten");
     if (artikelKontenDiv) {
-const currentURL = window.location.href; // Ambil URL lengkap saat ini
-      
+      const currentURL = window.location.href; // Ambil URL lengkap saat ini
+
       const reactionButtonsHTML = `
             <div class="reaction-buttons" data-content-id="${slug}" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 15px;">
               <button class="reaction-btn like-btn"><i class="fas fa-thumbs-up"></i> <span class="like-count">0</span></button>
@@ -565,16 +565,17 @@ App.initializers.aspirasi = () => {
   }
 
   const firebaseConfig = {
-    apiKey: "AIzaSyA_SYgK13vSvwvOr6qVfbHMmYAHEIzTU7A",
-    authDomain: "karang-taruna-banjarsari.firebaseapp.com",
+    apiKey: "AIzaSyBl9qIcylHlyYouvjjpNC3KhE9aZVe2GV0",
+    authDomain: "my-personal-blog-2dfc0.firebaseapp.com",
+    // BARIS INI WAJIB DITAMBAHKAN:
     databaseURL:
-      "https://karang-taruna-banjarsari-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "karang-taruna-banjarsari",
-    storageBucket: "karang-taruna-banjarsari.firebasestorage.app",
-    messagingSenderId: "802982045794",
-    appId: "1:802982045794:web:953482fd61e2255a1c093b",
+      "https://my-personal-blog-2dfc0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "my-personal-blog-2dfc0",
+    storageBucket: "my-personal-blog-2dfc0.firebasestorage.app",
+    messagingSenderId: "859096020336",
+    appId: "1:859096020336:web:7d05a1220bd44c340d4bb5",
+    measurementId: "G-46X3TH1GPC",
   };
-
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
