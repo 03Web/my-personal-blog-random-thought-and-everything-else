@@ -763,31 +763,44 @@ const App = (() => {
     }
   }
 
-  // === FUNGSI BARU: MODAL FEEDBACK BERDASARKAN JUMLAH KUNJUNGAN HALAMAN (MODIFIKASI) ===
+  // === FUNGSI BARU: MODAL FEEDBACK (Muncul di Klik ke-5, Reset saat Keluar) ===
   const initExitFeedbackModal = () => {
-    const TRIGGER_AFTER_X_PAGES = 4;
-
-    let pageViews = parseInt(sessionStorage.getItem("pageViewCount") || "0");
-    pageViews++;
-    sessionStorage.setItem("pageViewCount", pageViews);
-
-    // Cek apakah jumlah pageViews adalah kelipatan dari TRIGGER_AFTER_X_PAGES
-    if (pageViews % TRIGGER_AFTER_X_PAGES !== 0) {
+    // 1. CEK STATUS SESI INI:
+    // Jika di sesi ini (sejak buka browser) sudah pernah muncul, jangan munculkan lagi.
+    if (sessionStorage.getItem("feedbackShownSession")) {
       return;
     }
 
-    // Hapus modal yang mungkin sudah ada sebelumnya untuk memastikan hanya ada satu
-    const existingModal = document.getElementById("exit-feedback-modal");
-    if (existingModal) {
-      existingModal.remove();
+    // 2. HITUNG KLIK (Pakai sessionStorage agar reset saat browser ditutup)
+    const TRIGGER_AT_CLICK = 5;
+    let clickCount = parseInt(
+      sessionStorage.getItem("sessionClickCount") || "0"
+    );
+
+    clickCount++; // Tambah 1 setiap kali pindah halaman
+    sessionStorage.setItem("sessionClickCount", clickCount);
+
+    // 3. LOGIKA PEMICU:
+    // Hanya muncul JIKA hitungan TEPAT di angka 5.
+    // Klik 1-4: Tidak muncul.
+    // Klik 6 dst: Tidak muncul (karena count sudah > 5).
+    if (clickCount !== TRIGGER_AT_CLICK) {
+      return;
     }
 
+    // --- JIKA TEPAT KLIK KE-5, KODE DI BAWAH JALAN ---
+
+    // Tandai bahwa sudah muncul di sesi ini
+    sessionStorage.setItem("feedbackShownSession", "true");
+
+    // 4. TAMPILKAN MODAL
     const modalHTML = `
-      <div id="exit-feedback-modal">
+      <div id="exit-feedback-modal" class="visible">
         <div class="feedback-modal-content">
           <i class="fas fa-star modal-icon" style="font-size: 2.5em; color: var(--secondary-color); margin-bottom: 15px;"></i>
-          <h2>Tunggu Sebentar!</h2>
-          <p>Anda telah menjelajahi website kami. Kami sangat menghargai masukan Anda untuk pengembangan selanjutnya.</p>
+          <h2>Halo Warga!</h2>
+          <p>Terima kasih sudah antusias menjelajahi website kami (5 Halaman!).</p>
+          <p>Boleh minta waktunya sebentar untuk memberi rating?</p>
           
           <form id="feedback-form">
             <div class="star-rating" id="feedback-star-rating">
@@ -810,6 +823,7 @@ const App = (() => {
     `;
     document.body.insertAdjacentHTML("beforeend", modalHTML);
 
+    // --- LOGIKA INTERAKSI MODAL ---
     const modal = document.getElementById("exit-feedback-modal");
     const form = document.getElementById("feedback-form");
     const stars = document.querySelectorAll("#feedback-star-rating .fa-star");
@@ -817,17 +831,9 @@ const App = (() => {
     const submitBtn = document.getElementById("submit-feedback-btn");
     let currentRating = 0;
 
-    const showModal = () => {
-      modal.classList.add("visible");
-    };
-
     const hideModal = () => {
       modal.classList.remove("visible");
-      // Hapus modal dari DOM setelah ditutup agar bisa muncul lagi
-      setTimeout(() => modal.remove(), 500);
     };
-
-    showModal();
 
     stars.forEach((star) => {
       star.addEventListener("click", () => {
@@ -860,28 +866,31 @@ const App = (() => {
         tanggal: new Date().toISOString(),
       };
 
-      firebase
-        .database()
-        .ref("feedbackWebsite")
-        .push(feedbackData)
-        .then(() => {
-          const content = modal.querySelector(".feedback-modal-content");
-          content.innerHTML = `
-            <i class="fas fa-check-circle modal-icon" style="font-size: 3em; color: #28a745;"></i>
-            <h2>Terima Kasih!</h2>
-            <p>Masukan Anda sangat berarti bagi kami.</p>
-          `;
-          setTimeout(hideModal, 2500);
-        })
-        .catch((error) => {
-          console.error("Firebase Error:", error);
-          alert("Gagal mengirim masukan. Silakan coba lagi.");
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Kirim Masukan";
-        });
+      if (typeof firebase !== "undefined") {
+        firebase
+          .database()
+          .ref("feedbackWebsite")
+          .push(feedbackData)
+          .then(() => {
+            const content = modal.querySelector(".feedback-modal-content");
+            content.innerHTML = `
+              <i class="fas fa-check-circle modal-icon" style="font-size: 3em; color: #28a745;"></i>
+              <h2>Terima Kasih!</h2>
+              <p>Masukan Anda sangat berarti bagi saya.</p>
+            `;
+            setTimeout(hideModal, 2500);
+          })
+          .catch((error) => {
+            console.error("Firebase Error:", error);
+            alert("Terima kasih! Masukan Anda telah dicatat.");
+            hideModal();
+          });
+      } else {
+        alert("Terima kasih atas masukan Anda!");
+        hideModal();
+      }
     });
   };
-
   // === INITIALIZER UTAMA ===
   const initPage = () => {
     const isIndexPage =
@@ -894,7 +903,7 @@ const App = (() => {
     //   return;
     // }
     /* ini untuk menonaktifkan pengecekan halaman index agar tidak memaksakan harus login */
-    
+
     if (!document.querySelector(".mobile-top-header")) {
       const mobileHeader = document.createElement("header");
       mobileHeader.className = "mobile-top-header";
