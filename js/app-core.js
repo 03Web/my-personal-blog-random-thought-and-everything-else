@@ -798,9 +798,9 @@ const App = (() => {
       <div id="exit-feedback-modal" class="visible">
         <div class="feedback-modal-content">
           <i class="fas fa-star modal-icon" style="font-size: 2.5em; color: var(--secondary-color); margin-bottom: 15px;"></i>
-          <h2>Halo Warga!</h2>
-          <p>Terima kasih sudah antusias menjelajahi website kami (5 Halaman!).</p>
-          <p>Boleh minta waktunya sebentar untuk memberi rating?</p>
+          <h2>Hallo Guy!</h2>
+          <p>Thank You Sudah Mampir & Menjelajahi Website Saya.
+          Boleh minta waktunya sebentar untuk memberi feedback atau masukan lain? Please Apa adanya saja hhh</p>
           
           <form id="feedback-form">
             <div class="star-rating" id="feedback-star-rating">
