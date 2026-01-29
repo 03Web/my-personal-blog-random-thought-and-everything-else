@@ -136,15 +136,15 @@
     }
   },
   {
-    "id": "project-001",
+    "id": "project-001-telegram-ai-bot",
     "title": "Telegram AI Agent Automation v3.0",
     "shortDescription": "Asisten AI Telegram modular dengan integrasi penuh Google Workspace, sistem Advanced RAG, Voice-to-Action, dan Multi-Agent Debate System.",
     "fullDescription": "AI agent automation berbasis Telegram generasi ketiga (v3.0) yang dirancang sebagai 'LifeOS' pribadi. Sistem ini terintegrasi secara mendalam dengan seluruh ekosistem Google (Drive, Gmail, Calendar, Sheets, Docs, Forms) untuk melakukan tugas CRUD (Create, Read, Update, Delete) otomatis. Fitur unggulannya meliputi: \n1. **Advanced RAG (Retrieval-Augmented Generation):** Menggunakan Pinecone Vector DB untuk memori jangka panjang dan pencarian dokumen hybrid (Semantik + Keyword). \n2. **Multi-Agent Debate System:** Menggunakan arsitektur 4-tahap (Architect, Gatherer, Debater, Judge) dengan kombinasi DeepSeek Reasoner dan DeepSeek Chat untuk pemecahan masalah kompleks. \n3. **Smart Voice Router:** Memproses pesan suara menggunakan Whisper untuk instruksi natural (misal: 'catat pengeluaran', 'ingatkan saya'). \n4. **LifeOS & Productivity:** Pencatatan keuangan otomatis via OCR foto struk, manajemen Todo List, dan ringkasan harian. \n5. **Research & News:** Riset online otomatis menggunakan DuckDuckGo dan ekstraksi wisdom dari video YouTube.",
     "thumbnail": "foto/projects/telegram-ai-bot.jpg",
     "images": [
-      "foto/projects/telegram-ai-1.jpg",
-      "foto/projects/telegram-ai-2.jpg",
-      "foto/projects/telegram-ai-3.jpg"
+      "",
+      "",
+      ""
     ],
     "technologies": [
       "Python 3.10+",
