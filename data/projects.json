@@ -1,5 +1,55 @@
 [
   {
+    "id": "project-001",
+    "title": "Clawbot: Advanced Modular AI Automation Framework",
+    "shortDescription": "Framework AI Agent multi-platform (Telegram, Discord, Slack, dll) dengan integrasi Google Workspace penuh, RAG Memory, Browser Automation, dan orkestrasi Multi-Agent.",
+    "fullDescription": "Sistem otomatisasi AI Agent tingkat lanjut yang dibangun dengan arsitektur Hybrid (TypeScript & Python). Bot ini bertindak sebagai orkestrator pusat yang dapat diakses melalui berbagai platform chat (Telegram, Discord, Slack, WhatsApp, Signal). \n\nFitur Utama:\n1. **Integrasi Ekosistem Google Lengkap**: Menggunakan Python scripts untuk berinteraksi mendalam dengan Drive, Gmail, Calendar, Sheets, Docs, dan Forms (Create, Read, Update, Delete).\n2. **Advanced Memory System (RAG)**: Dilengkapi dengan memori jangka panjang menggunakan SQLite Vector dan LanceDB untuk Retrieval-Augmented Generation, memungkinkan bot mengingat konteks percakapan lampau dan dokumen spesifik.\n3. **Multi-Model AI Support**: Mendukung switching dinamis antara OpenAI (GPT-4o, DALL-E), Anthropic (Claude), Google Gemini, DeepSeek, dan Ollama (Local LLM).\n4. **Autonomous Browser**: Kemampuan 'Computer Use' menggunakan Playwright untuk menjalankan tugas berbasis web secara otonom.\n5. **Fitur Spesifik**: Mode Debat AI (DeepSeek Reasoner), Voice Command (Whisper), Text-to-Speech (ElevenLabs/OpenAI), dan manajemen tugas harian.\n6. **Keamanan & DevOps**: Arsitektur containerized dengan Docker, audit log, dan sistem perizinan (approval) untuk eksekusi perintah sensitif.",
+    "thumbnail": "https://pbs.twimg.com/media/G_nJ-07bAAIjPqt?format=jpg&name=medium",
+    "images": [
+      "https://pbs.twimg.com/media/G_qbyUQWgAAiaOv?format=jpg&name=small",
+      "https://pbs.twimg.com/media/G_ft99hXcAAc1bu?format=jpg&name=4096x4096",
+      "https://pbs.twimg.com/media/G_hcLvdbgAAMmSY?format=jpg&name=medium"
+    ],
+    "technologies": [
+      "TypeScript",
+      "Node.js",
+      "Python",
+      "Docker",
+      "Playwright (Browser Automation)",
+      "SQLite & LanceDB (Vector Database)",
+      "DeepSeek API",
+      "OpenAI API (GPT & Whisper)",
+      "Anthropic API (Claude)",
+      "Google Workspace APIs",
+      "Telegram Bot API",
+      "Discord.js",
+      "Webhooks"
+    ],
+    "category": "AI & Machine Learning",
+    "tags": [
+      "AI Agent",
+      "Automation",
+      "RAG",
+      "TypeScript",
+      "Python",
+      "ChatOps",
+      "Multi-Platform"
+    ],
+    "links": {
+      "live": "https://www.molt.bot/",
+      "github": "https://github.com/moltbot/moltbot.git",
+      "documentation": "docs/index.md"
+    },
+    "status": "in Progress",
+    "featured": true,
+    "completedDate": "2026-01-25",
+    "stats": {
+      "stars": 120,
+      "forks": 15,
+      "contributors": 3
+    }
+  },
+  {
     "id": "project-ecommerce-001",
     "title": "Multi-Vendor E-Commerce Platform",
     "shortDescription": "Platform marketplace fullstack dengan fitur multi-vendor, integrasi payment gateway Midtrans, dan real-time chat.",
@@ -36,7 +86,7 @@
     },
     "status": "in Progress",
     "featured": true,
-    "completedDate": "2026-01-30",
+    "completedDate": "2026-01-29",
     "stats": {
       "stars": 0,
       "forks": 0,
@@ -87,9 +137,9 @@
   },
   {
     "id": "project-001",
-    "title": "Telegram AI Agent Automation",
-    "shortDescription": "AI agent otomasi Telegram dengan integrasi ekosistem Google, sistem RAG, DALL-E image generation, voice commands, dan mode debat AI.",
-    "fullDescription": "AI agent automation berbasis Telegram yang terhubung ke seluruh ekosistem Google (Drive, Gmail, Calendar, Sheets, Docs, Forms) dengan kemampuan create, read, analisa, dan edit. Dilengkapi dengan sistem memory menggunakan RAG (Retrieval-Augmented Generation), generate gambar menggunakan DALL-E ChatGPT, voice command dengan Whisper, cek berita realtime dengan integrasi Google Search, mode riset, mode thinking, summary todolist harian, pencatatan keuangan otomatis, dan fitur unik mode debat menggunakan DeepSeek Reasoner sebagai analisa prompt, dua DeepSeek Chat untuk debat, dan DeepSeek Reasoner sebagai hakim penentu.",
+    "title": "Telegram AI Agent Automation v3.0",
+    "shortDescription": "Asisten AI Telegram modular dengan integrasi penuh Google Workspace, sistem Advanced RAG, Voice-to-Action, dan Multi-Agent Debate System.",
+    "fullDescription": "AI agent automation berbasis Telegram generasi ketiga (v3.0) yang dirancang sebagai 'LifeOS' pribadi. Sistem ini terintegrasi secara mendalam dengan seluruh ekosistem Google (Drive, Gmail, Calendar, Sheets, Docs, Forms) untuk melakukan tugas CRUD (Create, Read, Update, Delete) otomatis. Fitur unggulannya meliputi: \n1. **Advanced RAG (Retrieval-Augmented Generation):** Menggunakan Pinecone Vector DB untuk memori jangka panjang dan pencarian dokumen hybrid (Semantik + Keyword). \n2. **Multi-Agent Debate System:** Menggunakan arsitektur 4-tahap (Architect, Gatherer, Debater, Judge) dengan kombinasi DeepSeek Reasoner dan DeepSeek Chat untuk pemecahan masalah kompleks. \n3. **Smart Voice Router:** Memproses pesan suara menggunakan Whisper untuk instruksi natural (misal: 'catat pengeluaran', 'ingatkan saya'). \n4. **LifeOS & Productivity:** Pencatatan keuangan otomatis via OCR foto struk, manajemen Todo List, dan ringkasan harian. \n5. **Research & News:** Riset online otomatis menggunakan DuckDuckGo dan ekstraksi wisdom dari video YouTube.",
     "thumbnail": "foto/projects/telegram-ai-bot.jpg",
     "images": [
       "foto/projects/telegram-ai-1.jpg",
@@ -97,17 +147,25 @@
       "foto/projects/telegram-ai-3.jpg"
     ],
     "technologies": [
-      "Python",
-      "DeepSeek API",
-      "OpenAI API",
-      "Google APIs",
-      "Whisper",
-      "DALL-E",
-      "RAG",
+      "Python 3.10+",
+      "DeepSeek API (Reasoner & Chat)",
+      "OpenAI API (DALL-E 3, Whisper, Embeddings)",
+      "Google Workspace APIs (Drive, Sheets, Docs, Gmail, Calendar, Forms)",
+      "Pinecone (Vector Database)",
+      "PostgreSQL & SQLite",
+      "Docker & Fly.io",
+      "DuckDuckGo Search",
       "Telegram Bot API"
     ],
     "category": "AI & Machine Learning",
-    "tags": ["AI Agent", "Automation", "Telegram Bot", "NLP", "Voice AI"],
+    "tags": [
+      "AI Agent",
+      "RAG System",
+      "Multi-Agent",
+      "Google Automation",
+      "Productivity",
+      "NLP"
+    ],
     "links": {
       "live": "https://03web.github.io/Flow-chart-telegram-assitent-ai-agent/",
       "github": "",
@@ -127,7 +185,7 @@
     "title": "Website Karang Taruna Banjarsari",
     "shortDescription": "Website organisasi Karang Taruna dengan e-commerce UMKM, kotak aspirasi Firebase, artikel multi-kategori, galeri, dan AI chatbot.",
     "fullDescription": "Website lengkap untuk organisasi Karang Taruna Banjarsari yang menampilkan flowchart struktur organisasi terstruktur dari ketua hingga anggota. Dilengkapi e-commerce UMKM desa dalam mode trial yang terintegrasi dengan Midtrans sandbox untuk payment gateway, kotak aspirasi tanpa login dengan opsi anonim yang tersimpan di Firebase Realtime Database, sistem komentar terintegrasi, berbagai artikel dengan kategori berita, education, opini, tentang desa, acara, dan lainnya. Terdapat galeri foto dan video dokumentasi kegiatan Karang Taruna, serta AI chatbot dengan knowledge base khusus yang hanya menjawab seputar Karang Taruna berdasarkan data organisasi.",
-    "thumbnail": "foto/logoneutrontransparan.png",
+    "thumbnail": "https://karangtarunabanjarsari.fun/foto/logokarangtarunabjr.jpeg",
     "images": [
       "foto/projects/karangtaruna-home.jpg",
       "foto/projects/karangtaruna-shop.jpg",
@@ -157,7 +215,7 @@
     },
     "status": "Completed",
     "featured": true,
-    "completedDate": "2025-01-15",
+    "completedDate": "2024-01-15",
     "stats": {
       "stars": 0,
       "forks": 0,
@@ -192,7 +250,7 @@
     },
     "status": "Completed",
     "featured": false,
-    "completedDate": "2024-12-20",
+    "completedDate": "2026-01-25",
     "stats": {
       "stars": 0,
       "forks": 0,

@@ -4,6 +4,26 @@
  * @version Perbaikan 24-08-2025
  */
 
+// === FIREBASE INITIALIZATION (GLOBAL) ===
+// Inisialisasi Firebase secara global agar dapat diakses oleh semua halaman
+const firebaseConfig = {
+  apiKey: "AIzaSyBl9qIcylHlyYouvjjpNC3KhE9aZVe2GV0",
+  authDomain: "my-personal-blog-2dfc0.firebaseapp.com",
+  databaseURL:
+    "https://my-personal-blog-2dfc0-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "my-personal-blog-2dfc0",
+  storageBucket: "my-personal-blog-2dfc0.firebasestorage.app",
+  messagingSenderId: "859096020336",
+  appId: "1:859096020336:web:7d05a1220bd44c340d4bb5",
+  measurementId: "G-46X3TH1GPC",
+};
+
+// Inisialisasi Firebase hanya sekali
+if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+  console.log('Firebase initialized successfully');
+}
+
 // === HOME PAGE INITIALIZER (PERBAIKAN FINAL DENGAN TIMEOUT) ===
 App.initializers.home = async () => {
   // --- Inisialisasi Testimoni (Mengambil dari JSON) ---
@@ -564,21 +584,8 @@ App.initializers.aspirasi = () => {
     }
   }
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBl9qIcylHlyYouvjjpNC3KhE9aZVe2GV0",
-    authDomain: "my-personal-blog-2dfc0.firebaseapp.com",
-    // BARIS INI WAJIB DITAMBAHKAN:
-    databaseURL:
-      "https://my-personal-blog-2dfc0-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "my-personal-blog-2dfc0",
-    storageBucket: "my-personal-blog-2dfc0.firebasestorage.app",
-    messagingSenderId: "859096020336",
-    appId: "1:859096020336:web:7d05a1220bd44c340d4bb5",
-    measurementId: "G-46X3TH1GPC",
-  };
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
+  // Firebase sudah diinisialisasi secara global di bagian atas file
+  // Tidak perlu inisialisasi ulang di sini
 
   const aspirasiContainer = document.getElementById("aspirasi-list");
   const form = document.getElementById("aspirasi-form");

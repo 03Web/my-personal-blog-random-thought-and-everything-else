@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                 </a>
-                <div class="reaction-buttons" style="padding: 10px; background-color: var(--card-bg); border-radius: 0 0 8px 8px; border-top: 1px solid var(--border-color);">
-                    <button class="reaction-btn like-btn"><i class="fas fa-thumbs-up"></i> <span class="like-count">0</span></button>
-                    <button class="reaction-btn dislike-btn"><i class="fas fa-thumbs-down"></i> <span class="dislike-count">0</span></button>
+                <div class="product-reaction-section">
+                    <button class="reaction-btn like-btn" data-reaction-type="like"><i class="fas fa-thumbs-up"></i> <span class="like-count">0</span></button>
+                    <button class="reaction-btn dislike-btn" data-reaction-type="dislike"><i class="fas fa-thumbs-down"></i> <span class="dislike-count">0</span></button>
                 </div>
             </div>
           `;

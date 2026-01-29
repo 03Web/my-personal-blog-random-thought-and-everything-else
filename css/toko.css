@@ -61,30 +61,39 @@
 
 /* Grid Produk */
 .product-grid {
-  /* Diubah: Menyesuaikan agar lebih mirip dengan gambar */
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(150px, 1fr)
-  ); /* Ukuran kartu lebih kecil */
-  gap: 15px; /* Jarak antar kartu lebih rapat */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+/* Product Card Wrapper - Container untuk card + reaction buttons sebagai satu kesatuan */
+.product-card-wrapper {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 170, 255, 0.2);
+  border-color: var(--primary-color);
 }
 
 .product-card {
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  overflow: hidden;
   text-decoration: none;
   color: var(--light-text);
-  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  /* Hover effect ada di wrapper, bukan di card */
+  text-decoration: none;
 }
 
 .product-image {
@@ -138,6 +147,51 @@
 
 .product-stats .fa-star {
   color: #f7b733;
+}
+
+/* Product Reaction Section - Like/Dislike buttons di bagian bawah card */
+.product-reaction-section {
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 170, 255, 0.1);
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.product-card-wrapper:hover .product-reaction-section {
+  background-color: rgba(0, 170, 255, 0.05);
+  border-top-color: rgba(0, 170, 255, 0.2);
+}
+
+.product-reaction-section .reaction-btn {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 0.75em;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--dark-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+}
+
+.product-reaction-section .reaction-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: rgba(0, 170, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.product-reaction-section .reaction-btn.voted {
+  border-color: var(--primary-color);
+  background-color: rgba(0, 170, 255, 0.2);
+  color: var(--primary-color);
 }
 
 /* ============================================== */
