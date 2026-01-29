@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tweets & Kutipan - Random Thoughts and Everything Else</title>
+    <title>Portfolio - Programming Projects | Amazia Kristanto</title>
     <meta
       name="description"
-      content="Kumpulan kutipan, tweet, dan pemikiran menarik dari berbagai tokoh dan sumber."
+      content="Showcase of programming, web development, AI/ML, and computer science projects by Amazia Kristanto."
     />
     <link rel="icon" type="image/png" href="foto/logoneutrontransparan.png" />
     <link
@@ -15,6 +15,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/chatbot.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
   </head>
   <body data-page-id="kutipan">
     <div id="particles-js"></div>
@@ -22,43 +23,52 @@
 
     <main>
       <div class="container">
-        <h1 class="animate-on-scroll">Tweets & Kutipan</h1>
+        <h1 class="animate-on-scroll">Portfolio Projects</h1>
         <p class="animate-on-scroll" style="margin-bottom: 30px">
-          Jelajahi kumpulan tweet, kutipan, dan pemikiran yang menginspirasi,
-          menghibur, atau sekadar memprovokasi.
+          Explore my programming projects spanning web development, AI/ML,
+          mobile applications, and computer science experiments.
         </p>
 
-        <div class="filter-container animate-on-scroll">
-          <div class="sort-container">
-            <select id="kategori-filter" class="sorter">
-              <option value="semua">Semua Kategori</option>
-              <option value="Humor">Humor</option>
-              <option value="Teknologi & Masyarakat">
-                Teknologi & Masyarakat
-              </option>
-              <option value="Pendidikan">Pendidikan</option>
-              <option value="Kutipan Inspiratif">Kutipan Inspiratif</option>
-              <option value="Sejarah">Sejarah</option>
-              <option value="Pemikiran">Pemikiran</option>
-            </select>
+        <!-- Portfolio Controls -->
+        <div class="portfolio-controls animate-on-scroll">
+          <!-- Search Bar -->
+          <div class="portfolio-search-bar">
+            <input
+              type="text"
+              id="portfolio-search"
+              placeholder="Search projects..."
+            />
+            <i class="fas fa-search"></i>
           </div>
-          <div class="sort-container">
-            <select id="kutipan-sorter" class="sorter">
-              <option value="terbaru">Terbaru ke Lama</option>
-              <option value="terlama">Lama ke Terbaru</option>
+
+          <!-- Sort Only -->
+          <div class="filter-row">
+            <select id="portfolio-sorter" class="sorter">
+              <option value="featured">Featured First</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
             </select>
           </div>
         </div>
 
-        <div
-          id="kutipan-list"
-          class="kegiatan-list"
-          style="gap: 35px; display: grid; grid-template-columns: 1fr"
-        >
-          <p>Memuat kutipan...</p>
+        <!-- Project Grid -->
+        <div id="portfolio-grid" class="portfolio-grid">
+          <p>Loading projects...</p>
         </div>
       </div>
     </main>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="project-modal">
+      <div class="project-modal-content">
+        <button class="modal-close-btn" id="close-project-modal">
+          <i class="fas fa-times"></i>
+        </button>
+        <div id="project-modal-body">
+          <!-- Content will be dynamically inserted -->
+        </div>
+      </div>
+    </div>
 
     <footer id="main-footer"></footer>
 
@@ -103,7 +113,7 @@
 
     <script src="js/app-core.js" defer></script>
     <script src="js/page-initializers.js" defer></script>
-    <script src="js/kutipan.js" defer></script>
+    <script src="js/portfolio.js" defer></script>
     <script src="js/chatbot_knowledge.js" defer></script>
     <script src="js/chatbot_sederhana.js" defer></script>
   </body>

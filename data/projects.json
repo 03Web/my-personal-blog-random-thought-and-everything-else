@@ -1,0 +1,229 @@
+[
+  {
+    "id": "project-ecommerce-001",
+    "title": "Multi-Vendor E-Commerce Platform",
+    "shortDescription": "Platform marketplace fullstack dengan fitur multi-vendor, integrasi payment gateway Midtrans, dan real-time chat.",
+    "fullDescription": "Platform E-Commerce modern berbasis web yang mendukung ekosistem Multi-Vendor (Marketplace). Dibangun menggunakan Laravel (Backend) dan React.js dengan Inertia (Frontend), aplikasi ini memungkinkan pengguna mendaftar sebagai pembeli atau membuka toko sebagai vendor. Fitur unggulan meliputi integrasi pembayaran otomatis menggunakan Midtrans, manajemen produk dan stok, dashboard analitik untuk admin dan vendor, sistem dompet digital dengan fitur penarikan dana (disbursement), manajemen sengketa (dispute system), serta fitur Live Chat realtime antara penjual dan pembeli. Sistem juga menggunakan Redis untuk performa tinggi dalam caching dan antrian proses.",
+    "thumbnail": "https://lh6.googleusercontent.com/proxy/QKa22CYDJQmfMIpB9gfNcjtvZFwu59JEBVtcC2cxCu_AmTNwMT7bPbKiYRvqOmaoB3Nm6ILMnKDaZGSNlcoq34ND3PJ3w7J9QC3zvJLlrcrpZZRoCV4gN8oJT4PVe_HUsK0",
+    "images": [
+      "https://lh6.googleusercontent.com/proxy/QKa22CYDJQmfMIpB9gfNcjtvZFwu59JEBVtcC2cxCu_AmTNwMT7bPbKiYRvqOmaoB3Nm6ILMnKDaZGSNlcoq34ND3PJ3w7J9QC3zvJLlrcrpZZRoCV4gN8oJT4PVe_HUsK0",
+      "https://s3.envato.com/files/543873411/preview_3.png",
+      "foto/projects/ecommerce-chat.jpg"
+    ],
+    "technologies": [
+      "PHP (Laravel 11)",
+      "React.js",
+      "Inertia.js",
+      "Tailwind CSS",
+      "MySQL",
+      "Redis",
+      "Midtrans Payment Gateway",
+      "Vite"
+    ],
+    "category": "Web Development",
+    "tags": [
+      "E-Commerce",
+      "Marketplace",
+      "Fullstack",
+      "Laravel",
+      "React",
+      "Fintech Integration"
+    ],
+    "links": {
+      "live": "https://domain-kamu.com",
+      "github": "https://github.com/username/repo-ecommerce",
+      "documentation": ""
+    },
+    "status": "in Progress",
+    "featured": true,
+    "completedDate": "2026-01-30",
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "contributors": 1
+    }
+  },
+  {
+    "id": "project-form-penjualan-ai",
+    "title": "Smart Point of Sale & Inventory System (AI Integrated)",
+    "shortDescription": "Aplikasi desktop manajemen penjualan dan stok berbasis VB.NET dengan integrasi DeepSeek AI untuk analisis bisnis dan asisten cerdas.",
+    "fullDescription": "Sistem aplikasi desktop komprehensif yang dibangun menggunakan Visual Basic .NET (.NET Framework 4.7.2) dan Windows Forms. Aplikasi ini dirancang untuk menangani operasional kasir dan manajemen inventaris (Master Barang, Stok Masuk, Pengeluaran). Fitur unggulan meliputi integrasi 'ModuleAI' yang menghubungkan aplikasi dengan DeepSeek API untuk memberikan analisis cerdas atau fitur chat asisten di dalam aplikasi. Sistem ini juga dilengkapi dengan keamanan data melalui Audit Logging (Mencatat aktivitas Tambah/Edit/Hapus User), autentikasi pengguna, dan penggunaan database lokal Microsoft Access (OleDb) untuk performa yang ringan dan portabel.",
+    "thumbnail": "foto/projects/smart-pos-thumb.jpg",
+    "images": [
+      "foto/projects/smart-pos-dashboard.jpg",
+      "foto/projects/smart-pos-masterbarang.jpg",
+      "foto/projects/smart-pos-ai-chat.jpg"
+    ],
+    "technologies": [
+      "Visual Basic .NET",
+      "Windows Forms (WinForms)",
+      ".NET Framework 4.7.2",
+      "Microsoft Access (MDB/OleDb)",
+      "DeepSeek API",
+      "Newtonsoft.Json",
+      "Crystal Reports (Optional/Support)"
+    ],
+    "category": "Desktop Application",
+    "tags": [
+      "Point of Sale",
+      "Inventory Management",
+      "AI Integration",
+      "VB.NET",
+      "Database Management"
+    ],
+    "links": {
+      "live": "",
+      "github": "https://github.com/03web/formpenjualancobaujicoba",
+      "documentation": ""
+    },
+    "status": "in Progress",
+    "featured": false,
+    "completedDate": "2025-01-30",
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "contributors": 1
+    }
+  },
+  {
+    "id": "project-001",
+    "title": "Telegram AI Agent Automation",
+    "shortDescription": "AI agent otomasi Telegram dengan integrasi ekosistem Google, sistem RAG, DALL-E image generation, voice commands, dan mode debat AI.",
+    "fullDescription": "AI agent automation berbasis Telegram yang terhubung ke seluruh ekosistem Google (Drive, Gmail, Calendar, Sheets, Docs, Forms) dengan kemampuan create, read, analisa, dan edit. Dilengkapi dengan sistem memory menggunakan RAG (Retrieval-Augmented Generation), generate gambar menggunakan DALL-E ChatGPT, voice command dengan Whisper, cek berita realtime dengan integrasi Google Search, mode riset, mode thinking, summary todolist harian, pencatatan keuangan otomatis, dan fitur unik mode debat menggunakan DeepSeek Reasoner sebagai analisa prompt, dua DeepSeek Chat untuk debat, dan DeepSeek Reasoner sebagai hakim penentu.",
+    "thumbnail": "foto/projects/telegram-ai-bot.jpg",
+    "images": [
+      "foto/projects/telegram-ai-1.jpg",
+      "foto/projects/telegram-ai-2.jpg",
+      "foto/projects/telegram-ai-3.jpg"
+    ],
+    "technologies": [
+      "Python",
+      "DeepSeek API",
+      "OpenAI API",
+      "Google APIs",
+      "Whisper",
+      "DALL-E",
+      "RAG",
+      "Telegram Bot API"
+    ],
+    "category": "AI & Machine Learning",
+    "tags": ["AI Agent", "Automation", "Telegram Bot", "NLP", "Voice AI"],
+    "links": {
+      "live": "https://03web.github.io/Flow-chart-telegram-assitent-ai-agent/",
+      "github": "",
+      "documentation": ""
+    },
+    "status": "Completed",
+    "featured": true,
+    "completedDate": "2025-01-10",
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "contributors": 1
+    }
+  },
+  {
+    "id": "project-002",
+    "title": "Website Karang Taruna Banjarsari",
+    "shortDescription": "Website organisasi Karang Taruna dengan e-commerce UMKM, kotak aspirasi Firebase, artikel multi-kategori, galeri, dan AI chatbot.",
+    "fullDescription": "Website lengkap untuk organisasi Karang Taruna Banjarsari yang menampilkan flowchart struktur organisasi terstruktur dari ketua hingga anggota. Dilengkapi e-commerce UMKM desa dalam mode trial yang terintegrasi dengan Midtrans sandbox untuk payment gateway, kotak aspirasi tanpa login dengan opsi anonim yang tersimpan di Firebase Realtime Database, sistem komentar terintegrasi, berbagai artikel dengan kategori berita, education, opini, tentang desa, acara, dan lainnya. Terdapat galeri foto dan video dokumentasi kegiatan Karang Taruna, serta AI chatbot dengan knowledge base khusus yang hanya menjawab seputar Karang Taruna berdasarkan data organisasi.",
+    "thumbnail": "foto/logoneutrontransparan.png",
+    "images": [
+      "foto/projects/karangtaruna-home.jpg",
+      "foto/projects/karangtaruna-shop.jpg",
+      "foto/projects/karangtaruna-gallery.jpg"
+    ],
+    "technologies": [
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Firebase",
+      "Midtrans API",
+      "Particles.js",
+      "AI Chatbot"
+    ],
+    "category": "Web Development",
+    "tags": [
+      "Full Stack",
+      "E-Commerce",
+      "Firebase",
+      "Responsive",
+      "AI Integration"
+    ],
+    "links": {
+      "live": "https://www.karangtarunabanjarsari.fun/index.html",
+      "github": "",
+      "documentation": ""
+    },
+    "status": "Completed",
+    "featured": true,
+    "completedDate": "2025-01-15",
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "contributors": 1
+    }
+  },
+  {
+    "id": "project-003",
+    "title": "RT03 Management System",
+    "shortDescription": "Sistem manajemen RT dengan admin dashboard, data warga, keuangan, inventaris, pengumuman, dan log history permanen.",
+    "fullDescription": "Website manajemen RT03 dengan fitur lengkap untuk administrasi lingkungan. Terdapat halaman publik yang menampilkan daftar pengurus RT, rekapitulasi keuangan transparansi, pengumuman, dan jadwal kegiatan. Sistem admin dengan login authentication mencakup dashboard statistik keuangan (pemasukan/pengeluaran) dan data warga, modul input data warga, manajemen keuangan komprehensif untuk iuran, kas, sewa, dan pengeluaran dengan fitur print dan export ke Excel, manajemen pengumuman dan jadwal terkini, sistem inventaris untuk pencatatan barang/fasilitas RT (piring, gelas, tenda, sendok, sound, diesel) dengan fitur peminjaman dan tracking status pengembalian, serta log history permanen yang tidak dapat dihapus kecuali oleh developer untuk mencegah penyalahgunaan data.",
+    "thumbnail": "foto/projects/rt03-dashboard.jpg",
+    "images": [
+      "foto/projects/rt03-home.jpg",
+      "foto/projects/rt03-admin.jpg",
+      "foto/projects/rt03-keuangan.jpg"
+    ],
+    "technologies": [
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Firebase",
+      "Chart.js",
+      "Excel Export"
+    ],
+    "category": "Web Development",
+    "tags": ["Admin Dashboard", "Management System", "Data Analytics", "CRUD"],
+    "links": {
+      "live": "https://rt03.fun/",
+      "github": "",
+      "documentation": ""
+    },
+    "status": "Completed",
+    "featured": false,
+    "completedDate": "2024-12-20",
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "contributors": 1
+    }
+  },
+  {
+    "id": "project-004",
+    "title": "Sistem Edukasi  Judi Online",
+    "shortDescription": "Website edukasi interaktif dengan simulasi judi online yang bisa disetting untuk menunjukkan manipulasi sistem judol.",
+    "fullDescription": "Website edukatif yang bertujuan untuk mengedukasi masyarakat tentang bahaya dan manipulasi sistem judi online. Menampilkan simulasi interaktif dengan tampilan visual menyerupai game candy crush yang familiar. Fitur utama adalah kemampuan setting simulasi untuk menunjukkan bagaimana sistem judol bekerja: mode menang terus (untuk menarik pemain), mode kalah terus (realitas sesungguhnya), dan mode acak. Tujuannya adalah memberikan pemahaman kepada pengguna bahwa hasil dalam judi online dapat dimanipulasi dan bukan murni keberuntungan, sehingga meningkatkan kesadaran akan bahaya judi online dan mencegah kecanduan.",
+    "thumbnail": "https://www.um-surabaya.ac.id/uploads/home/gambar_konten/foto_konten-peneliti-umsurabaya-judi-online-meretas-otak-manusia-dan-bisa-berujung-kakacauan-sosial-uswah-5lEc4S.webp",
+    "images": [
+      "https://www.um-surabaya.ac.id/uploads/home/gambar_konten/foto_konten-peneliti-umsurabaya-judi-online-meretas-otak-manusia-dan-bisa-berujung-kakacauan-sosial-uswah-5lEc4S.webp ",
+      "foto/projects/judol-settings.jpg"
+    ],
+    "technologies": ["JavaScript", "HTML5", "CSS3", "Canvas API", "Game Logic"],
+    "category": "Web Development",
+    "tags": ["Educational", "Game Simulation", "Social Impact", "Interactive"],
+    "links": {
+      "live": "https://03web.github.io/Judol-nganu-v2/",
+      "github": "",
+      "documentation": ""
+    },
+    "status": "Completed",
+    "featured": false,
+    "completedDate": "2024-11-15",
+    "stats": {
+      "stars": 0,
+      "forks": 0,
+      "contributors": 1
+    }
+  }
+]
