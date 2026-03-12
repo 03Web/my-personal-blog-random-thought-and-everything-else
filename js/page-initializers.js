@@ -189,19 +189,56 @@ App.initializers.home = async () => {
               p.innerHTML = `
                 <span class="short-text">"${shortText}..."</span>
                 <span class="full-text">"${fullText}"</span>
-                <button class="read-more-btn">selengkapnya</button>
               `;
+              
+              // Tambahkan tombol UI premium di bawah paragraf
+              const btnHTML = `
+                <div class="read-more-wrapper">
+                  <button class="read-more-btn" type="button" aria-expanded="false">
+                    <span class="btn-text">Selengkapnya</span>
+                    <i class="fas fa-chevron-down"></i>
+                  </button>
+                </div>
+              `;
+              body.insertAdjacentHTML("beforeend", btnHTML);
 
-              const readMoreBtn = p.querySelector(".read-more-btn");
-              readMoreBtn.addEventListener("click", (e) => {
+              const readMoreBtn = body.querySelector(".read-more-btn");
+              const btnText = readMoreBtn.querySelector(".btn-text");
+
+              const toggleExpand = (e) => {
+                e.preventDefault();
                 e.stopPropagation();
-                // Tutup card lain yang terbuka
-                carousel.querySelectorAll(".testimonial-body.expanded").forEach((otherBody) => {
-                  if (otherBody !== body) otherBody.classList.remove("expanded");
-                });
-                body.classList.toggle("expanded");
-                stopAutoPlay();
-              });
+                
+                const isExpanded = body.classList.contains("expanded");
+                
+                if (!isExpanded) {
+                  // Tutup card lain yang terbuka
+                  carousel.querySelectorAll(".testimonial-body.expanded").forEach((otherBody) => {
+                    if (otherBody !== body) {
+                      otherBody.classList.remove("expanded");
+                      const otherBtn = otherBody.querySelector(".read-more-btn");
+                      if (otherBtn) {
+                        otherBtn.setAttribute("aria-expanded", "false");
+                        otherBtn.querySelector(".btn-text").textContent = "Selengkapnya";
+                      }
+                    }
+                  });
+                  
+                  body.classList.add("expanded");
+                  readMoreBtn.setAttribute("aria-expanded", "true");
+                  btnText.textContent = "Tutup";
+                } else {
+                  body.classList.remove("expanded");
+                  readMoreBtn.setAttribute("aria-expanded", "false");
+                  btnText.textContent = "Selengkapnya";
+                }
+                
+                // Stop drag/scroll intent if any
+                isDragging = false;
+                carousel.style.cursor = "";
+              };
+              
+              readMoreBtn.addEventListener("click", toggleExpand);
             } else {
               p.innerHTML = `"${fullText}"`;
             }
@@ -220,7 +257,10 @@ App.initializers.home = async () => {
           const deltaTime = Math.min(currentTime - lastTime, 50); // capping delta max
           lastTime = currentTime;
 
-          if (!isDragging && !isHoveringElement) {
+          // Check if any card is currently expanded by the user
+          const hasExpandedCard = carousel.querySelector(".testimonial-body.expanded") !== null;
+
+          if (!isDragging && !isHoveringElement && !hasExpandedCard) {
             accumulatedScroll += (autoScrollSpeed * deltaTime) / 1000;
             if (accumulatedScroll >= 1) {
               const intScroll = Math.floor(accumulatedScroll);
@@ -255,45 +295,70 @@ App.initializers.home = async () => {
         // --- Drag/touch scroll support ---
         let isDragging = false;
         let startX = 0;
+        let startY = 0;
+        let currentX = 0;
         let scrollLeftStart = 0;
+        let hasDragged = false;
 
         carousel.addEventListener("pointerdown", (e) => {
-          // Hanya drag dengan mouse kiri atau touch
           if (e.pointerType === "mouse" && e.button !== 0) return;
+          
+          // --- FIX: Prevent capturing pointer events on interactive elements ---
+          if (e.target.closest('.read-more-btn') || e.target.closest('a') || e.target.closest('.reaction-btn')) {
+            return; // Biarkan event diteruskan ke tombol agar bisa diklik
+          }
+
           isDragging = true;
+          hasDragged = false;
           startX = e.pageX;
+          startY = e.pageY;
+          currentX = startX;
           scrollLeftStart = carousel.scrollLeft;
-          carousel.style.cursor = "grabbing";
-          carousel.setPointerCapture(e.pointerId);
+          try {
+            carousel.setPointerCapture(e.pointerId);
+          } catch(err) {}
           isHoveringElement = true; // pause auto scroll
         });
 
         carousel.addEventListener("pointermove", (e) => {
           if (!isDragging) return;
-          e.preventDefault();
+          
           const dx = e.pageX - startX;
-          carousel.scrollLeft = scrollLeftStart - dx;
+          const dy = Math.abs(e.pageY - startY);
+          
+          // Only start dragging horizontally if they moved X more than Y (and >5px to avoid jitter)
+          if (!hasDragged && Math.abs(dx) > 5 && Math.abs(dx) > dy) {
+            hasDragged = true;
+            carousel.style.cursor = "grabbing";
+          }
+          
+          if (hasDragged) {
+            e.preventDefault();
+            carousel.scrollLeft = scrollLeftStart - dx;
+          }
         });
 
         const stopDrag = () => {
           if (!isDragging) return;
           isDragging = false;
           carousel.style.cursor = "";
-          // Snap halus ke card terdekat setelah dilepas
-          const cardWidth = getCardWidth();
-          const snapTarget = Math.round(carousel.scrollLeft / cardWidth) * cardWidth;
-          carousel.scrollTo({ left: snapTarget, behavior: "smooth" });
+          
+          if (hasDragged) {
+            // Snap halus ke card terdekat setelah dilepas
+            const cardWidth = getCardWidth();
+            const snapTarget = Math.round(carousel.scrollLeft / cardWidth) * cardWidth;
+            carousel.scrollTo({ left: snapTarget, behavior: "smooth" });
+          }
 
-          isHoveringElement = false; // resume auto-scroll
-          // Jangan panggil startAutoPlay lagi karena loop sudah berjalan, flag saja yg diubah
+          isHoveringElement = false; 
         };
 
         carousel.addEventListener("pointerup", stopDrag);
         carousel.addEventListener("pointercancel", stopDrag);
 
-        // Prevent link clicks during drag
+        // Prevent link clicks during true drag
         carousel.addEventListener("click", (e) => {
-          if (Math.abs(carousel.scrollLeft - scrollLeftStart) > 5) {
+          if (hasDragged) {
             e.preventDefault();
             e.stopPropagation();
           }
