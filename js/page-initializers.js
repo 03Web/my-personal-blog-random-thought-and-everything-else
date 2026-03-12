@@ -70,22 +70,119 @@ App.initializers.home = async () => {
       // Panggil fungsi update UI untuk setiap testimoni
       testimonialData.forEach((item) => App.updateReactionUI(item.id));
 
-      // === LOGIKA CAROUSEL DAN BACA SELENGKAPNYA ===
+      // === LOGIKA CAROUSEL INFINITE LOOP DAN BACA SELENGKAPNYA ===
       setTimeout(() => {
         const carousel = testimonialContainer;
-        const items = carousel.querySelectorAll(".testimonial-card");
-        if (items.length <= 1) return;
+        const originalItems = Array.from(carousel.querySelectorAll(".testimonial-card"));
+        if (originalItems.length <= 1) return;
 
         let autoPlayInterval;
-        const firstItem = items[0];
+        const gap = 25; // gap between cards in px
+        const totalOriginal = originalItems.length;
+        // Jumlah clone di setiap sisi (cukup untuk mengisi viewport)
+        const cloneCount = Math.min(totalOriginal, 5);
 
+        // --- Buat clone di awal dan akhir untuk efek infinite ---
+        const fragment_end = document.createDocumentFragment();
+        const fragment_start = document.createDocumentFragment();
+        for (let i = 0; i < cloneCount; i++) {
+          const cloneEnd = originalItems[i].cloneNode(true);
+          cloneEnd.classList.add("testimonial-clone");
+          cloneEnd.setAttribute("aria-hidden", "true");
+          fragment_end.appendChild(cloneEnd);
+
+          const cloneStart = originalItems[totalOriginal - 1 - i].cloneNode(true);
+          cloneStart.classList.add("testimonial-clone");
+          cloneStart.setAttribute("aria-hidden", "true");
+          fragment_start.insertBefore(cloneStart, fragment_start.firstChild);
+        }
+        carousel.appendChild(fragment_end);
+        carousel.insertBefore(fragment_start, carousel.firstChild);
+
+        // --- Hitung posisi awal (skip clone awal) ---
+        const getCardWidth = () => {
+          const card = carousel.querySelector(".testimonial-card");
+          return card ? card.offsetWidth + gap : 300 + gap;
+        };
+
+        const setInitialScroll = () => {
+          carousel.scrollLeft = cloneCount * getCardWidth();
+        };
+        setInitialScroll();
+
+        // --- Deteksi boundary dan reset posisi untuk infinite loop ---
+        let isResetting = false;
+        const handleInfiniteScroll = () => {
+          if (isResetting) return;
+          const cardWidth = getCardWidth();
+          const totalCloneWidth = cloneCount * cardWidth;
+          const totalOriginalWidth = totalOriginal * cardWidth;
+          const maxScroll = totalCloneWidth + totalOriginalWidth;
+          const currentScroll = carousel.scrollLeft;
+
+          if (currentScroll >= maxScroll) {
+            // Melewati batas kanan → reset ke awal original
+            isResetting = true;
+            carousel.scrollLeft = currentScroll - totalOriginalWidth;
+            requestAnimationFrame(() => {
+              isResetting = false;
+            });
+          } else if (currentScroll <= 0) {
+            // Melewati batas kiri → reset ke akhir original
+            isResetting = true;
+            carousel.scrollLeft = currentScroll + totalOriginalWidth;
+            requestAnimationFrame(() => {
+              isResetting = false;
+            });
+          }
+        };
+
+        carousel.addEventListener("scroll", handleInfiniteScroll);
+
+        // --- Pagination Dots ---
+        let dotsContainer = wrapper.querySelector(".carousel-dots");
+        if (!dotsContainer) {
+          dotsContainer = document.createElement("div");
+          dotsContainer.classList.add("carousel-dots");
+          // Batasi dots agar tidak terlalu banyak (max 10)
+          const dotCount = Math.min(totalOriginal, 10);
+          for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement("span");
+            dot.classList.add("carousel-dot");
+            if (i === 0) dot.classList.add("active");
+            dot.dataset.index = i;
+            dotsContainer.appendChild(dot);
+          }
+          wrapper.appendChild(dotsContainer);
+        }
+
+        const updateDots = () => {
+          const cardWidth = getCardWidth();
+          const scrollPos = carousel.scrollLeft - (cloneCount * cardWidth);
+          let activeIndex = Math.round(scrollPos / cardWidth);
+          activeIndex = ((activeIndex % totalOriginal) + totalOriginal) % totalOriginal;
+          const dots = dotsContainer.querySelectorAll(".carousel-dot");
+          const dotCount = dots.length;
+          // Map activeIndex ke range dots
+          const mappedIndex = Math.round((activeIndex / totalOriginal) * dotCount);
+          const finalIndex = Math.min(mappedIndex, dotCount - 1);
+          dots.forEach((d, i) => d.classList.toggle("active", i === finalIndex));
+        };
+
+        carousel.addEventListener("scroll", () => {
+          requestAnimationFrame(updateDots);
+        });
+
+        // --- Baca Selengkapnya ---
         const initializeReadMore = () => {
           const charLimit = 150;
-
-          items.forEach((card) => {
+          // Terapkan pada semua card termasuk clones
+          carousel.querySelectorAll(".testimonial-card").forEach((card) => {
             const body = card.querySelector(".testimonial-body");
             const p = body.querySelector("p");
+            if (!p) return;
             const fullText = p.getAttribute("data-fulltext");
+            if (!fullText) return;
 
             if (fullText.length > charLimit) {
               const shortText = fullText.substring(0, charLimit);
@@ -96,13 +193,11 @@ App.initializers.home = async () => {
               `;
 
               const readMoreBtn = p.querySelector(".read-more-btn");
-              readMoreBtn.addEventListener("click", () => {
-                items.forEach((otherCard) => {
-                  if (otherCard !== card) {
-                    otherCard
-                      .querySelector(".testimonial-body")
-                      .classList.remove("expanded");
-                  }
+              readMoreBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                // Tutup card lain yang terbuka
+                carousel.querySelectorAll(".testimonial-body.expanded").forEach((otherBody) => {
+                  if (otherBody !== body) otherBody.classList.remove("expanded");
                 });
                 body.classList.toggle("expanded");
                 stopAutoPlay();
@@ -113,35 +208,107 @@ App.initializers.home = async () => {
           });
         };
 
-        const startAutoPlay = () => {
-          stopAutoPlay();
-          autoPlayInterval = setInterval(() => {
-            const scrollAmount = firstItem.offsetWidth + 25;
-            const isAtEnd =
-              carousel.scrollLeft + carousel.clientWidth >=
-              carousel.scrollWidth - 1;
-            if (isAtEnd) {
-              carousel.scrollTo({ left: 0, behavior: "smooth" });
-            } else {
-              carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        // --- Auto-play: scroll kontinu, pelan, halus, dinamis dan profesional ---
+        let autoPlayAniId;
+        let lastTime = 0;
+        const autoScrollSpeed = 35; // 35 pixels per detik (semakin kecil semakin lambat)
+        let accumulatedScroll = 0;
+        let isHoveringElement = false;
+
+        const autoScrollLoop = (currentTime) => {
+          if (!lastTime) lastTime = currentTime;
+          const deltaTime = Math.min(currentTime - lastTime, 50); // capping delta max
+          lastTime = currentTime;
+
+          if (!isDragging && !isHoveringElement) {
+            accumulatedScroll += (autoScrollSpeed * deltaTime) / 1000;
+            if (accumulatedScroll >= 1) {
+              const intScroll = Math.floor(accumulatedScroll);
+              carousel.scrollLeft += intScroll;
+              accumulatedScroll -= intScroll;
             }
-          }, 5000);
+          }
+          autoPlayAniId = requestAnimationFrame(autoScrollLoop);
         };
 
-        const stopAutoPlay = () => clearInterval(autoPlayInterval);
+        const startAutoPlay = () => {
+          isHoveringElement = false;
+          if (!autoPlayAniId) {
+            lastTime = 0; // reset
+            autoPlayAniId = requestAnimationFrame(autoScrollLoop);
+          }
+        };
 
+        const stopAutoPlay = () => {
+          isHoveringElement = true; // Loop tetap jalan tapi tidak scroll
+        };
+
+        // --- Tombol navigasi ---
         nextBtn.addEventListener("click", () => {
-          const scrollAmount = firstItem.offsetWidth + 25;
-          carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+          carousel.scrollBy({ left: getCardWidth(), behavior: "smooth" });
         });
 
         prevBtn.addEventListener("click", () => {
-          const scrollAmount = firstItem.offsetWidth + 25;
-          carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+          carousel.scrollBy({ left: -getCardWidth(), behavior: "smooth" });
         });
 
+        // --- Drag/touch scroll support ---
+        let isDragging = false;
+        let startX = 0;
+        let scrollLeftStart = 0;
+
+        carousel.addEventListener("pointerdown", (e) => {
+          // Hanya drag dengan mouse kiri atau touch
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          isDragging = true;
+          startX = e.pageX;
+          scrollLeftStart = carousel.scrollLeft;
+          carousel.style.cursor = "grabbing";
+          carousel.setPointerCapture(e.pointerId);
+          isHoveringElement = true; // pause auto scroll
+        });
+
+        carousel.addEventListener("pointermove", (e) => {
+          if (!isDragging) return;
+          e.preventDefault();
+          const dx = e.pageX - startX;
+          carousel.scrollLeft = scrollLeftStart - dx;
+        });
+
+        const stopDrag = () => {
+          if (!isDragging) return;
+          isDragging = false;
+          carousel.style.cursor = "";
+          // Snap halus ke card terdekat setelah dilepas
+          const cardWidth = getCardWidth();
+          const snapTarget = Math.round(carousel.scrollLeft / cardWidth) * cardWidth;
+          carousel.scrollTo({ left: snapTarget, behavior: "smooth" });
+
+          isHoveringElement = false; // resume auto-scroll
+          // Jangan panggil startAutoPlay lagi karena loop sudah berjalan, flag saja yg diubah
+        };
+
+        carousel.addEventListener("pointerup", stopDrag);
+        carousel.addEventListener("pointercancel", stopDrag);
+
+        // Prevent link clicks during drag
+        carousel.addEventListener("click", (e) => {
+          if (Math.abs(carousel.scrollLeft - scrollLeftStart) > 5) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }, true);
+
+        // --- Pause/resume auto-play on hover ---
         wrapper.addEventListener("mouseenter", stopAutoPlay);
         wrapper.addEventListener("mouseleave", startAutoPlay);
+
+        // --- Resize handler: reset posisi clone boundary ---
+        let resizeTimeout;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(setInitialScroll, 200);
+        });
 
         initializeReadMore();
         startAutoPlay();
@@ -164,22 +331,20 @@ App.initializers.home = async () => {
 
       const createKegiatanTemplate = (item) => `
         <article class="kegiatan-item" style="display: flex; flex-direction: column;">
-          <a href="${
-            item.link
-          }" class="kegiatan-foto" style="width:100%; height: 180px;">
-            <img src="${item.gambar}" alt="${
-        item.alt_gambar || "Gambar Kegiatan " + item.judul
-      }" loading="lazy">
+          <a href="${item.link
+        }" class="kegiatan-foto" style="width:100%; height: 180px;">
+            <img src="${item.gambar}" alt="${item.alt_gambar || "Gambar Kegiatan " + item.judul
+        }" loading="lazy">
           </a>
           <div class="kegiatan-konten">
             <h2>${item.judul}</h2>
             <p class="kegiatan-meta"><i class="fas fa-calendar-alt"></i> ${new Date(
-              item.tanggal
-            ).toLocaleDateString("id-ID", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}</p>
+          item.tanggal
+        ).toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}</p>
             <a href="${item.link}" class="kegiatan-tombol">Baca Selengkapnya</a>
           </div>
         </article>`;
@@ -211,22 +376,19 @@ App.initializers.kegiatan = async () => {
       item.link.split("slug=")[1]?.replace(/[^a-zA-Z0-9]/g, "_") ||
       `artikel_${new Date(item.tanggal).getTime()}`;
     return `
-    <a href="${
-      item.link
-    }" class="kegiatan-item animate-on-scroll" data-content-id="${contentId}" data-kategori="${
-      item.kategori
-    }" data-tanggal="${item.tanggal}">
+    <a href="${item.link
+      }" class="kegiatan-item animate-on-scroll" data-content-id="${contentId}" data-kategori="${item.kategori
+      }" data-tanggal="${item.tanggal}">
       <div class="kegiatan-foto">
-        <img src="${item.gambar}" alt="${
-      item.alt_gambar || "Gambar " + item.judul
-    }" loading="lazy">
+        <img src="${item.gambar}" alt="${item.alt_gambar || "Gambar " + item.judul
+      }" loading="lazy">
       </div>
       <div class="kegiatan-konten">
         <h3>${item.judul}</h3>
         <span class="kegiatan-meta">${new Date(item.tanggal).toLocaleDateString(
-          "id-ID",
-          { day: "numeric", month: "long", year: "numeric" }
-        )}</span>
+        "id-ID",
+        { day: "numeric", month: "long", year: "numeric" }
+      )}</span>
         <p>${item.deskripsi}</p>
         
         <div class="card-actions">
@@ -291,12 +453,10 @@ App.initializers.galeri = async () => {
     const createAlbumTemplate = (album) => `
     <div class="album-item">
         <div class="album-cover" id="album-cover-${album.id}">
-            <img src="${album.cover}" alt="${
-      album.alt_cover || "Cover album " + album.judul
-    }" loading="lazy">
-            <div class="album-info"><h4>${album.judul}</h4><p>${
-      album.deskripsi
-    }</p></div>
+            <img src="${album.cover}" alt="${album.alt_cover || "Cover album " + album.judul
+      }" loading="lazy">
+            <div class="album-info"><h4>${album.judul}</h4><p>${album.deskripsi
+      }</p></div>
             <div class="click-hint-animated">
                 <i class="fas fa-hand-pointer"></i>
                 <span>Buka Galeri</span>
@@ -304,15 +464,14 @@ App.initializers.galeri = async () => {
         </div>
         <div id="lightgallery-${album.id}" style="display:none;">
             ${album.foto
-              .map(
-                (foto) =>
-                  `<a href="${foto.src}" data-sub-html="<h4>${
-                    foto.title || album.judul
-                  }</h4>" data-alt="${foto.alt || foto.title}">
+        .map(
+          (foto) =>
+            `<a href="${foto.src}" data-sub-html="<h4>${foto.title || album.judul
+            }</h4>" data-alt="${foto.alt || foto.title}">
                       <img src="${foto.src}" alt="${foto.alt || foto.title}" />
                   </a>`
-              )
-              .join("")}
+        )
+        .join("")}
         </div>
     </div>`;
 
@@ -387,12 +546,10 @@ App.initializers.galeri = async () => {
   const videoContainer = document.getElementById("video-grid");
   if (videoContainer && data.dokumentasiVideo) {
     const createVideoTemplate = (video) => `
-        <div class="gallery-item video-item animate-on-scroll" data-tanggal="${
-          video.tanggal
-        }">
-            <iframe src="${video.src.replace("watch?v=", "embed/")}" title="${
-      video.title
-    }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="gallery-item video-item animate-on-scroll" data-tanggal="${video.tanggal
+      }">
+            <iframe src="${video.src.replace("watch?v=", "embed/")}" title="${video.title
+      }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
         </div>`;
     const renderVideos = (items) =>
       App.renderItems(
@@ -423,15 +580,14 @@ App.initializers.kontak = async () => {
 
   const createKontakTemplate = (kontak) => `
     <div class="kontak-card animate-on-scroll">
-      <img src="${kontak.foto}" alt="${
-    kontak.alt
-  }" class="foto-pengurus" loading="lazy" />
+      <img src="${kontak.foto}" alt="${kontak.alt
+    }" class="foto-pengurus" loading="lazy" />
       <h4>${kontak.nama}</h4>
       <p class="jabatan">${kontak.jabatan}</p>
       <p class="info-kontak">${kontak.deskripsi}</p>
       <a href="https://wa.me/${kontak.whatsapp}?text=${encodeURIComponent(
-    kontak.pesan_wa
-  )}" target="_blank" class="wa-button">
+      kontak.pesan_wa
+    )}" target="_blank" class="wa-button">
         <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
       </a>
     </div>`;
@@ -626,15 +782,15 @@ App.initializers.aspirasi = () => {
         <div class="aspirasi-meta">
           <span>Oleh: <strong>${escapeHtml(namaPengirim)}</strong></span>
           <span>Masuk pada: ${new Date(item.tanggal_masuk).toLocaleDateString(
-            "id-ID",
-            {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-            }
-          )}</span>
+      "id-ID",
+      {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }
+    )}</span>
         </div>
         <div class="aspirasi-body">
           <p>${escapeHtml(item.pesan)}</p>
