@@ -514,21 +514,27 @@ App.initializers.galeri = async () => {
   if (!data) return;
 
   const albumContainer = document.getElementById("album-grid");
-  if (albumContainer && data.albumFoto) {
-    const createAlbumTemplate = (album) => `
+  if (albumContainer && Array.isArray(data.albumFoto)) {
+    const getAlbumPhotos = (album) =>
+      Array.isArray(album.foto) ? album.foto : [];
+
+    const createAlbumTemplate = (album) => {
+      const photos = getAlbumPhotos(album);
+      const photoCountLabel = `${photos.length} Foto`;
+
+      return `
     <div class="album-item">
         <div class="album-cover" id="album-cover-${album.id}">
             <img src="${album.cover}" alt="${album.alt_cover || "Cover album " + album.judul
       }" loading="lazy">
-            <div class="album-info"><h4>${album.judul}</h4><p>${album.deskripsi
-      }</p></div>
+            <div class="album-info"><h4>${album.judul}</h4><p>${photoCountLabel}</p></div>
             <div class="click-hint-animated">
                 <i class="fas fa-hand-pointer"></i>
                 <span>Buka Galeri</span>
             </div>
         </div>
         <div id="lightgallery-${album.id}" style="display:none;">
-            ${album.foto
+            ${photos
         .map(
           (foto) =>
             `<a href="${foto.src}" data-sub-html="<h4>${foto.title || album.judul
@@ -539,6 +545,7 @@ App.initializers.galeri = async () => {
         .join("")}
         </div>
     </div>`;
+    };
 
     albumContainer.innerHTML = `
       <div class="album-carousel-wrapper">
