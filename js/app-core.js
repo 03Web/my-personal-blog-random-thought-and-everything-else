@@ -587,8 +587,10 @@ const App = (() => {
       const isArtikelPageAndKegiatanLink =
         (currentLocation === "artikel.html" ||
           currentLocation === "detail-produk.html") &&
-        (linkPath === "kegiatan.html" || linkPath === "toko.html");
-      if (isCurrentPage || isArtikelPageAndKegiatanLink) {
+        (linkPath === "pojok-baca.html" || linkPath === "toko.html");
+      const isKegiatanPageAndPojokBacaLink =
+        currentLocation === "kegiatan.html" && linkPath === "pojok-baca.html";
+      if (isCurrentPage || isArtikelPageAndKegiatanLink || isKegiatanPageAndPojokBacaLink) {
         parentLi.classList.add("active");
         activeLinkElement = parentLi;
       }

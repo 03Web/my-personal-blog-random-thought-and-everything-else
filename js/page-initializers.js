@@ -943,3 +943,12 @@ App.initializers.aspirasi = () => {
     }
   });
 };
+
+// === POJOK BACA PAGE ===
+App.initializers['pojok-baca'] = () => {
+  if (typeof BacaanApp !== 'undefined') {
+    BacaanApp.init();
+  } else {
+    console.error('BacaanApp belum dimuat. Pastikan js/bacaan.js sudah terpasang.');
+  }
+};

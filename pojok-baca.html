@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <link rel="icon" type="image/jpeg" href="foto/logoneutrontransparan.png" />
+    <title>Pojok Baca - Blog Amazia Kristanto</title>
+    <meta
+      name="description"
+      content="Pojok Baca — Koleksi buku digital dan bacaan pilihan Amazia Kristanto. Baca langsung di browser."
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bacaan.css" />
+    <link rel="stylesheet" href="css/chatbot.css" />
+  </head>
+  <body data-page-id="pojok-baca">
+    <div id="particles-js"></div>
+    <header id="main-header"></header>
+
+    <main>
+      <section class="bacaan-section">
+        <div class="bacaan-section-header animate-on-scroll">
+          <h2><i class="fas fa-book-open"></i> Pojok Baca</h2>
+          <p>Koleksi buku digital pilihan — klik untuk langsung membaca.</p>
+        </div>
+
+        <div class="bacaan-grid" id="bacaan-grid-container">
+          <!-- Book cards rendered by JS -->
+          <div class="bacaan-grid-loading">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <p>Memuat koleksi buku...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================== -->
+      <!-- == SEPARATOR                  == -->
+      <!-- =============================== -->
+      <hr class="bacaan-separator" />
+
+      <!-- =============================== -->
+      <!-- == ARTIKEL SECTION            == -->
+      <!-- =============================== -->
+      <section class="bacaan-section bacaan-artikel-section">
+        <div class="bacaan-section-header animate-on-scroll">
+          <h2><i class="fas fa-pen-nib"></i> Artikel & Tulisan</h2>
+          <p>Kumpulan tulisan, esai, dan catatan pemikiran.</p>
+        </div>
+
+        <div class="artikel-filter-bar animate-on-scroll">
+          <div class="filter-group">
+            <label for="pb-kategori-filter"><i class="fas fa-filter"></i></label>
+            <select id="pb-kategori-filter" class="pb-sorter">
+              <option value="semua">Semua Kategori</option>
+              <option value="Share Education">Share Education</option>
+              <option value="NOTES & ARTICLES RANDOM">Notes & Random</option>
+              <option value="KERESAHAN">Keresahan</option>
+              <option value="summary books">Summary Books</option>
+              <option value="science">Science</option>
+              <option value="history">History</option>
+              <option value="PHILOSOPHY">Philosophy</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="pb-sorter"><i class="fas fa-sort"></i></label>
+            <select id="pb-sorter" class="pb-sorter">
+              <option value="terbaru">Terbaru</option>
+              <option value="terlama">Terlama</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="artikel-list-compact" id="pb-artikel-list">
+          <div class="bacaan-grid-loading">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <p>Memuat artikel...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =============================== -->
+    <!-- == PDF READER MODAL           == -->
+    <!-- =============================== -->
+    <div class="pdf-reader-modal" id="pdf-reader-modal">
+      <!-- Top Bar -->
+      <div class="reader-top-bar">
+        <div class="reader-top-left">
+          <button class="reader-btn reader-btn-close" id="reader-btn-close" title="Tutup">
+            <i class="fas fa-arrow-left"></i>
+            <span class="btn-label">Kembali</span>
+          </button>
+          <span class="reader-title" id="reader-book-title">Memuat...</span>
+        </div>
+        <div class="reader-top-right">
+          <button class="reader-btn" id="reader-btn-darkmode" title="Mode Gelap/Terang">
+            <i class="fas fa-moon"></i>
+            <span class="btn-label">Dark Mode</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Area -->
+      <div class="reader-canvas-area" id="reader-canvas-area">
+        <div class="reader-canvas-wrapper" id="reader-canvas-wrapper">
+          <canvas id="reader-canvas"></canvas>
+        </div>
+
+        <!-- Iframe fallback for Google Drive viewer (when CORS proxies fail) -->
+        <div id="reader-iframe-container" style="display:none; flex-direction:column; width:100%; height:100%; padding: 0;"></div>
+
+        <!-- Loading Overlay -->
+        <div class="reader-loading-overlay" id="reader-loading">
+          <i class="fas fa-circle-notch fa-spin"></i>
+          <p>Memuat PDF...</p>
+        </div>
+
+        <!-- Error Overlay -->
+        <div class="reader-error-overlay" id="reader-error">
+          <i class="fas fa-exclamation-circle"></i>
+          <h3>Gagal Memuat PDF</h3>
+          <p id="reader-error-msg">Terjadi kesalahan.</p>
+          <button class="reader-btn" id="reader-error-retry">
+            <i class="fas fa-arrow-left"></i> Kembali ke Katalog
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="reader-bottom-bar">
+        <div class="reader-page-nav">
+          <button class="reader-btn" id="reader-btn-prev" title="Halaman Sebelumnya" disabled>
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <input
+            type="text"
+            class="reader-page-input"
+            id="reader-page-input"
+            value="1"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            title="Ketik nomor halaman lalu tekan Enter"
+          />
+          <span class="reader-page-total" id="reader-page-total">/ 0</span>
+          <button class="reader-btn" id="reader-btn-next" title="Halaman Selanjutnya" disabled>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="reader-zoom-controls">
+          <button class="reader-btn" id="reader-btn-zoomout" title="Perkecil">
+            <i class="fas fa-minus"></i>
+          </button>
+          <span class="reader-zoom-level" id="reader-zoom-level">120%</span>
+          <button class="reader-btn" id="reader-btn-zoomin" title="Perbesar">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer id="main-footer"></footer>
+
+    <div id="chatbot-container">
+      <div id="chatbot-header">
+        <span>Chat dengan AI</span><button id="close-chatbot">-</button>
+      </div>
+      <div id="chatbot-body">
+        <div id="chat-window">
+          <div class="bot-message">
+            <p>Halo! Silakan tanyakan sesuatu tentang koleksi buku ini.</p>
+          </div>
+        </div>
+        <div id="chat-input-container">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Ketik pertanyaanmu..."
+          />
+          <button id="send-chat-btn">Kirim</button>
+        </div>
+      </div>
+    </div>
+    <button id="open-chatbot-btn"><i class="fas fa-comments"></i></button>
+
+    <!-- PDF.js CDN (v3 legacy UMD build, globally available as pdfjsLib) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="js/app-core.js" defer></script>
+    <script src="js/bacaan.js" defer></script>
+    <script src="js/page-initializers.js" defer></script>
+    <script src="js/chatbot_knowledge.js" defer></script>
+    <script src="js/chatbot_sederhana.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="js/komentar.js" defer></script>
+  </body>
+</html>

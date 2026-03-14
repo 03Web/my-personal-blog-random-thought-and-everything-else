@@ -1,0 +1,38 @@
+[
+  {
+    "id": "buku-001",
+    "judul_buku": "haidt the anxious generation",
+    "cover_url": "https://pbs.twimg.com/media/GvFdhH4bsAADXrb?format=jpg&name=small",
+    "pdf_url": "https://drive.google.com/file/d/1AkITaZmb4SlC8rVF16cqOoa2RdrmW6rR/view?usp=sharing"
+  },
+  {
+    "id": "buku-002",
+    "judul_buku": "the righteous mind",
+    "cover_url": "https://pbs.twimg.com/media/GqGEAn_XsAA34pH?format=jpg&name=medium",
+    "pdf_url": "https://drive.google.com/file/d/12eKhE-aHc1feHVjqkN6TwYT1OvDgK4Uk/view?usp=sharing"
+  },
+  {
+    "id": "buku-006",
+    "judul_buku": "thinking fast and slow",
+    "cover_url": "https://imgv2-1-f.scribdassets.com/img/word_document/182569769/original/216x287/fb2c0855e3/1764652337?v=1",
+    "pdf_url": "https://drive.google.com/file/d/1ylLzwBCDWbBSYHrbd-rZKO_obbBLL2uE/view?usp=sharing"
+  },
+  {
+    "id": "buku-003",
+    "judul_buku": "madilog",
+    "cover_url": "https://pbs.twimg.com/media/GaZ5OyhboAAP3yB?format=jpg&name=small",
+    "pdf_url": "https://drive.google.com/file/d/1FshTgOpQL5ESK36dSxsopSoer6zsgTPq/view?usp=sharing"
+  },
+  {
+    "id": "buku-004",
+    "judul_buku": "aksi massa",
+    "cover_url": "https://cdn.gramedia.com/uploads/product-metas/k7s01ss367.jpeg",
+    "pdf_url": "https://drive.google.com/file/d/1SfpQFkMPkuabOTBTamr5Va0LhNyvqoPc/view?usp=sharing"
+  },
+  {
+    "id": "buku-005",
+    "judul_buku": "mengapa negara-negara GAGAL",
+    "cover_url": "https://imgv2-1-f.scribdassets.com/img/document/365766659/original/cd124cf219/1?v=1",
+    "pdf_url": "https://drive.google.com/file/d/1Mp5dW1BOhYnit7jU3bcshXZ2HPTr9Lmw/view?usp=sharing"
+  }
+]
