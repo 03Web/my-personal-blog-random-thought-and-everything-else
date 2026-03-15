@@ -653,8 +653,10 @@
   }
 
   .reader-btn {
-    padding: 7px 9px;
-    font-size: 0.8em;
+    padding: 8px 10px;
+    font-size: 0.85em;
+    min-width: 36px;
+    min-height: 36px;
   }
 
   .reader-btn .btn-label {
@@ -667,18 +669,22 @@
 
   .reader-bottom-bar {
     padding: 8px 12px;
-    gap: 6px;
+    gap: 8px;
   }
 
   .reader-page-input {
-    width: 40px;
-    padding: 5px 3px;
-    font-size: 0.8em;
+    width: 42px;
+    padding: 6px 4px;
+    font-size: 0.85em;
   }
 
   .reader-page-total,
   .reader-zoom-level {
-    font-size: 0.75em;
+    font-size: 0.8em;
+  }
+
+  .reader-zoom-controls {
+    gap: 8px;
   }
 
   /* Artikel Section mobile */

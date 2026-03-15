@@ -697,6 +697,31 @@ footer {
   transform: translateY(0);
 }
 
+.footer-visitor-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-size: 0.85em;
+  color: var(--dark-text);
+}
+
+.footer-visitor-counter i {
+  font-size: 1em;
+  color: var(--primary-color);
+}
+
+.footer-visitor-counter #visitor-count-number {
+  font-weight: 700;
+  color: var(--light-text);
+  font-size: 1.05em;
+}
+
+.footer-visitor-counter .visitor-label {
+  font-size: 0.9em;
+}
+
 .footer-social-media {
   margin-bottom: 15px;
 }

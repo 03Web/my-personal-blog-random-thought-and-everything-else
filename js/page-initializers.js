@@ -139,35 +139,7 @@ App.initializers.home = async () => {
 
         carousel.addEventListener("scroll", handleInfiniteScroll);
 
-        // --- Pagination Dots ---
-        let dotsContainer = wrapper.querySelector(".carousel-dots");
-        if (!dotsContainer) {
-          dotsContainer = document.createElement("div");
-          dotsContainer.classList.add("carousel-dots");
-          // Batasi dots agar tidak terlalu banyak (max 10)
-          const dotCount = Math.min(totalOriginal, 10);
-          for (let i = 0; i < dotCount; i++) {
-            const dot = document.createElement("span");
-            dot.classList.add("carousel-dot");
-            if (i === 0) dot.classList.add("active");
-            dot.dataset.index = i;
-            dotsContainer.appendChild(dot);
-          }
-          wrapper.appendChild(dotsContainer);
-        }
-
-        const updateDots = () => {
-          const cardWidth = getCardWidth();
-          const scrollPos = carousel.scrollLeft - (cloneCount * cardWidth);
-          let activeIndex = Math.round(scrollPos / cardWidth);
-          activeIndex = ((activeIndex % totalOriginal) + totalOriginal) % totalOriginal;
-          const dots = dotsContainer.querySelectorAll(".carousel-dot");
-          const dotCount = dots.length;
-          // Map activeIndex ke range dots
-          const mappedIndex = Math.round((activeIndex / totalOriginal) * dotCount);
-          const finalIndex = Math.min(mappedIndex, dotCount - 1);
-          dots.forEach((d, i) => d.classList.toggle("active", i === finalIndex));
-        };
+        const updateDots = () => {}; // No-op (dots removed for cleaner UI)
 
         carousel.addEventListener("scroll", () => {
           requestAnimationFrame(updateDots);
