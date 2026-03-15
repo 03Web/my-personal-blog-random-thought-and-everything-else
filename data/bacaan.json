@@ -31,6 +31,12 @@
   },
   {
     "id": "buku-005",
+    "judul_buku": "Bumi manusia",
+    "cover_url": "https://pbs.twimg.com/media/HC0FSFXb0AE_5kr?format=jpg&name=large",
+    "pdf_url": "https://drive.google.com/file/d/1ISohCnhYipQ4wKAPgDlg79AXaTCv53L1/view?usp=sharing"
+  },
+  {
+    "id": "buku-006",
     "judul_buku": "mengapa negara-negara GAGAL",
     "cover_url": "https://imgv2-1-f.scribdassets.com/img/document/365766659/original/cd124cf219/1?v=1",
     "pdf_url": "https://drive.google.com/file/d/1Mp5dW1BOhYnit7jU3bcshXZ2HPTr9Lmw/view?usp=sharing"
