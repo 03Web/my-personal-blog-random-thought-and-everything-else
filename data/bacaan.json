@@ -43,6 +43,12 @@
   },
   {
     "id": "buku-007",
+    "judul_buku": "catatan seorang demonstran",
+    "cover_url": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1416554142i/1488085.jpg",
+    "pdf_url": "https://drive.google.com/file/d/1wFm44uVXgfzfhLJxvuonvddzTNCfvbdP/view?usp=sharing"
+  },
+  {
+    "id": "buku-007",
     "judul_buku": "Bumi manusia",
     "cover_url": "https://pbs.twimg.com/media/HC0FSFXb0AE_5kr?format=jpg&name=large",
     "pdf_url": "https://drive.google.com/file/d/1ISohCnhYipQ4wKAPgDlg79AXaTCv53L1/view?usp=sharing"
