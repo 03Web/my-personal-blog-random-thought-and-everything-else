@@ -31,10 +31,8 @@ App.initializers.home = async () => {
   const testimonialContainer = document.getElementById(
     "testimonial-carousel-container"
   );
-  const prevBtn = document.getElementById("testimonial-prev-btn");
-  const nextBtn = document.getElementById("testimonial-next-btn");
 
-  if (testimonialContainer && prevBtn && nextBtn) {
+  if (testimonialContainer) {
     const testimonialData = await App.fetchData(
       "testimonials",
       "data/testimonials.json"
@@ -254,15 +252,6 @@ App.initializers.home = async () => {
         const stopAutoPlay = () => {
           isHoveringElement = true; // Loop tetap jalan tapi tidak scroll
         };
-
-        // --- Tombol navigasi ---
-        nextBtn.addEventListener("click", () => {
-          carousel.scrollBy({ left: getCardWidth(), behavior: "smooth" });
-        });
-
-        prevBtn.addEventListener("click", () => {
-          carousel.scrollBy({ left: -getCardWidth(), behavior: "smooth" });
-        });
 
         // --- Drag/touch scroll support ---
         let isDragging = false;

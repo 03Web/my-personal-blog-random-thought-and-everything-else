@@ -1,7 +1,7 @@
 [
   {
     "id": "buku-001",
-    "judul_buku": "haidt the anxious generation",
+    "judul_buku": "the anxious generation",
     "cover_url": "https://pbs.twimg.com/media/GvFdhH4bsAADXrb?format=jpg&name=small",
     "pdf_url": "https://drive.google.com/file/d/1AkITaZmb4SlC8rVF16cqOoa2RdrmW6rR/view?usp=sharing"
   },
@@ -36,6 +36,12 @@
     "pdf_url": "https://drive.google.com/file/d/1SfpQFkMPkuabOTBTamr5Va0LhNyvqoPc/view?usp=sharing"
   },
   {
+    "id": "buku-011",
+    "judul_buku": "alam pikiran yunani",
+    "cover_url": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1255104026i/1772451.jpg",
+    "pdf_url": "https://drive.google.com/file/d/16QNyZzweov8NglE77Qq4AvWCS3lYxmh3/view?usp=sharing"
+  },
+  {
     "id": "buku-007",
     "judul_buku": "Bumi manusia",
     "cover_url": "https://pbs.twimg.com/media/HC0FSFXb0AE_5kr?format=jpg&name=large",
@@ -54,9 +60,15 @@
     "pdf_url": "https://drive.google.com/file/d/1vUharj1GKPYshnzFXdTaMVwlFgTyzgpP/view?usp=sharing"
   },
   {
-    "id": "buku-0010",
+    "id": "buku-010",
     "judul_buku": "seporsi mei ayam sebelum mati",
     "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaaXwGHe4ctn3TOXNTx5uutB7OQiEo0RVCwA&s",
     "pdf_url": "https://drive.google.com/file/d/1Z2YeRuZMXhIH3xkbIIiid0oxmyFpFcT0/view?usp=drive_link"
+  },
+  {
+    "id": "buku-011",
+    "judul_buku": "think again",
+    "cover_url": "https://cdn.gramedia.com/uploads/products/x6240in47a.jpg",
+    "pdf_url": "https://drive.google.com/file/d/1IBBcBsZn5oahKUaSvLiHhqQeyhVUolK7/view?usp=sharing"
   }
 ]

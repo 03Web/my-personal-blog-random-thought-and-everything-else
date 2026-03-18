@@ -10,7 +10,6 @@ const BacaanApp = (() => {
   let currentPage = 1;
   let totalPages = 0;
   let currentScale = 1.2;
-  let isDarkMode = false;
   let isRendering = false;
   let preloadedPage = null;
   let isIframeMode = false;
@@ -161,7 +160,6 @@ const BacaanApp = (() => {
       errorOverlay: document.getElementById('reader-error'),
       errorMsg: document.getElementById('reader-error-msg'),
       btnClose: document.getElementById('reader-btn-close'),
-      btnDarkMode: document.getElementById('reader-btn-darkmode'),
       btnPrev: document.getElementById('reader-btn-prev'),
       btnNext: document.getElementById('reader-btn-next'),
       btnZoomIn: document.getElementById('reader-btn-zoomin'),
@@ -259,15 +257,6 @@ const BacaanApp = (() => {
     els.title.textContent = title || 'Memuat...';
     hideError();
     showLoading(true);
-
-    // Dark mode
-    if (isDarkMode) {
-      els.modal.classList.add('reader-dark-mode');
-      els.btnDarkMode.classList.add('active-toggle');
-    } else {
-      els.modal.classList.remove('reader-dark-mode');
-      els.btnDarkMode.classList.remove('active-toggle');
-    }
 
     const fileId = extractDriveFileId(pdfUrl);
     if (!fileId) {
@@ -384,12 +373,6 @@ const BacaanApp = (() => {
     renderPage(currentPage);
   }
 
-  function toggleDarkMode() {
-    isDarkMode = !isDarkMode;
-    if (els.modal) els.modal.classList.toggle('reader-dark-mode', isDarkMode);
-    if (els.btnDarkMode) els.btnDarkMode.classList.toggle('active-toggle', isDarkMode);
-  }
-
   // =============================================
   // === ANTI-COPY PROTECTION                 ===
   // =============================================
@@ -411,7 +394,6 @@ const BacaanApp = (() => {
     cacheElements();
 
     if (els.btnClose) els.btnClose.addEventListener('click', closeReader);
-    if (els.btnDarkMode) els.btnDarkMode.addEventListener('click', toggleDarkMode);
     if (els.btnPrev) els.btnPrev.addEventListener('click', goPrevPage);
     if (els.btnNext) els.btnNext.addEventListener('click', goNextPage);
 
