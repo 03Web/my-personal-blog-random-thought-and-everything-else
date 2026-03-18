@@ -52,5 +52,11 @@
     "judul_buku": "cosmos",
     "cover_url": "https://cdn.gramedia.com/uploads/items/9786024242244_kosmos_1.jpg",
     "pdf_url": "https://drive.google.com/file/d/1vUharj1GKPYshnzFXdTaMVwlFgTyzgpP/view?usp=sharing"
+  },
+  {
+    "id": "buku-0010",
+    "judul_buku": "seporsi mei ayam sebelum mati",
+    "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaaXwGHe4ctn3TOXNTx5uutB7OQiEo0RVCwA&s",
+    "pdf_url": "https://drive.google.com/file/d/1Z2YeRuZMXhIH3xkbIIiid0oxmyFpFcT0/view?usp=drive_link"
   }
 ]
