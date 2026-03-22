@@ -92,6 +92,54 @@
     </div>
     <button id="open-chatbot-btn"><i class="fas fa-comments"></i></button>
 
+    <script>
+      // BEGIN: Fitur Embed Google Drive 
+      // Skrip ini mencegat request ke galeri.json dan secara otomatis 
+      // mengubah format link bagikan Google Drive menjadi link gambar langsung.
+      const originalFetch = window.fetch;
+      window.fetch = async function(...args) {
+        const response = await originalFetch.apply(this, args);
+        if (args[0] && typeof args[0] === 'string' && args[0].includes('data/galeri.json')) {
+          try {
+            const clone = response.clone();
+            const json = await clone.json();
+            
+            const convertGDRiveLink = (url) => {
+              if (!url) return url;
+              const match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+              if (match) {
+                // Menggunakan thumbnail API dari Google Drive dengan parameter URL dummy 
+                // (.jpg) agar LightGallery menganggapnya sebagai format gambar resmi
+                return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000&dummy=.jpg`;
+              }
+              return url;
+            };
+
+            if (json.albumFoto) {
+              json.albumFoto.forEach(album => {
+                if (album.cover) album.cover = convertGDRiveLink(album.cover);
+                if (album.foto) {
+                  album.foto.forEach(photo => {
+                    if (photo.src) photo.src = convertGDRiveLink(photo.src);
+                  });
+                }
+              });
+            }
+            
+            return new Response(JSON.stringify(json), {
+              status: response.status,
+              statusText: response.statusText,
+              headers: response.headers
+            });
+          } catch (e) {
+            console.error('Error saat memproses link Google Drive di galeri:', e);
+          }
+        }
+        return response;
+      };
+      // END: Fitur Embed Google Drive
+    </script>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"
       defer
