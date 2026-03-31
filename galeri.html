@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Galeri - Amazia Kristanto</title>
+    <meta
+      name="description"
+      content="Galeri foto dan video pribadi Amazia Kristanto, termasuk koleksi buku, proyek, dan momen lainnya."
+    />
+    <link rel="icon" type="image/jpeg" href="foto/logoneutrontransparan.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-thumbnail.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/chatbot.css" />
+    <link rel="stylesheet" href="css/enhancements.css" />
+  </head>
+  <body data-page-id="galeri">
+    <div id="particles-js"></div>
+    <header id="main-header"></header>
+    <main>
+      <div class="container">
+        <h1 class="animate-on-scroll">Gallery foto & video</h1>
+        <p style="margin-bottom: 40px" class="animate-on-scroll"></p>
+        <hr class="separator animate-on-scroll" />
+        <h2 class="animate-on-scroll">Dokumentasi Foto</h2>
+        <div id="album-grid"></div>
+        <hr class="separator animate-on-scroll" />
+        <h2 class="animate-on-scroll">My Random Video</h2>
+        <p style="color: var(--dark-text)">
+          this is a random video and everything else.
+        </p>
+        <div class="sort-container animate-on-scroll">
+          <label for="video-sorter">Urutkan berdasarkan:</label>
+          <select id="video-sorter" class="sorter">
+            <option value="terbaru">Terbaru ke Lama</option>
+            <option value="terlama">Lama ke Terbaru</option>
+          </select>
+        </div>
+        <div class="gallery-grid" id="video-grid"></div>
+      </div>
+    </main>
+    <footer id="main-footer"></footer>
+
+    <div id="chatbot-container">
+      <div id="chatbot-header">
+        <span>Chat dengan AI</span><button id="close-chatbot">-</button>
+      </div>
+      <div id="chatbot-body">
+        <div id="chat-window">
+          <div class="bot-message">
+            <p>
+              "Selamat datang di blog amazia
+              my-personal-blog-random-thought-and-everything-else! Saya adalah
+              AI assistant pribadi yang siap membantu Anda menjelajahi pemikiran
+              unik dan kreatif dari Amazia Kristanto. Blog ini adalah ruang
+              ekspresi yang penuh dengan ide-ide menarik, tulisan reflektif, dan
+              pemikiran yang terkadang random namun bermakna."
+            </p>
+            <p>
+              What do you want to explore today? Saya siap membantu Anda
+              menemukan konten yang sesuai dengan minat Anda,tentang pemilik
+              blog ini, menjawab pertanyaan, atau sekadar berbincang tentang
+              topik yang menarik!
+            </p>
+          </div>
+        </div>
+        <div id="chat-input-container">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Ketik pertanyaanmu..."
+          /><button id="send-chat-btn">Kirim</button>
+        </div>
+      </div>
+    </div>
+    <button id="open-chatbot-btn"><i class="fas fa-comments"></i></button>
+
+    <script>
+      // BEGIN: Fitur Embed Google Drive 
+      // Skrip ini mencegat request ke galeri.json dan secara otomatis 
+      // mengubah format link bagikan Google Drive menjadi link gambar langsung.
+      const originalFetch = window.fetch;
+      window.fetch = async function(...args) {
+        const response = await originalFetch.apply(this, args);
+        if (args[0] && typeof args[0] === 'string' && args[0].includes('data/galeri.json')) {
+          try {
+            const clone = response.clone();
+            const json = await clone.json();
+            
+            const convertGDRiveLink = (url) => {
+              if (!url) return url;
+              const match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+              if (match) {
+                // Menggunakan thumbnail API dari Google Drive dengan parameter URL dummy 
+                // (.jpg) agar LightGallery menganggapnya sebagai format gambar resmi
+                return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000&dummy=.jpg`;
+              }
+              return url;
+            };
+
+            if (json.albumFoto) {
+              json.albumFoto.forEach(album => {
+                if (album.cover) album.cover = convertGDRiveLink(album.cover);
+                if (album.foto) {
+                  album.foto.forEach(photo => {
+                    if (photo.src) photo.src = convertGDRiveLink(photo.src);
+                  });
+                }
+              });
+            }
+            
+            return new Response(JSON.stringify(json), {
+              status: response.status,
+              statusText: response.statusText,
+              headers: response.headers
+            });
+          } catch (e) {
+            console.error('Error saat memproses link Google Drive di galeri:', e);
+          }
+        }
+        return response;
+      };
+      // END: Fitur Embed Google Drive
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"
+      defer
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="js/visitor-counter.js" defer></script>
+    <script src="js/app-core.js" defer></script>
+    <script src="js/page-initializers.js" defer></script>
+    <script src="js/chatbot_knowledge.js" defer></script>
+    <script src="js/chatbot_sederhana.js" defer></script>
+  </body>
+</html>

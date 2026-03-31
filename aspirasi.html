@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Programming Projects | Amazia Kristanto</title>
+    <meta
+      name="description"
+      content="Showcase of programming, web development, AI/ML, and computer science projects by Amazia Kristanto."
+    />
+    <link rel="icon" type="image/png" href="foto/logoneutrontransparan.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/chatbot.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
+    <link rel="stylesheet" href="css/enhancements.css" />
+  </head>
+  <body data-page-id="kutipan">
+    <div id="particles-js"></div>
+    <header id="main-header"></header>
+
+    <main>
+      <div class="container">
+        <h1 class="animate-on-scroll">Portfolio Projects</h1>
+        <p class="animate-on-scroll" style="margin-bottom: 30px">
+          Explore my programming projects spanning web development, AI/ML,
+          mobile applications, and computer science experiments.
+        </p>
+
+        <!-- Portfolio Controls -->
+        <div class="portfolio-controls animate-on-scroll">
+          <!-- Search Bar -->
+          <div class="portfolio-search-bar">
+            <input
+              type="text"
+              id="portfolio-search"
+              placeholder="Search projects..."
+            />
+            <i class="fas fa-search"></i>
+          </div>
+
+          <!-- Sort Only -->
+          <div class="filter-row">
+            <select id="portfolio-sorter" class="sorter">
+              <option value="featured">Featured First</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Project Grid -->
+        <div id="portfolio-grid" class="portfolio-grid">
+          <p>Loading projects...</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="project-modal">
+      <div class="project-modal-content">
+        <button class="modal-close-btn" id="close-project-modal">
+          <i class="fas fa-times"></i>
+        </button>
+        <div id="project-modal-body">
+          <!-- Content will be dynamically inserted -->
+        </div>
+      </div>
+    </div>
+
+    <footer id="main-footer"></footer>
+
+    <div id="chatbot-container">
+      <div id="chatbot-header">
+        <span>Chat dengan AI</span><button id="close-chatbot">-</button>
+      </div>
+      <div id="chatbot-body">
+        <div id="chat-window">
+          <div class="bot-message">
+         <p>
+              "Selamat datang di blog amazia my-personal-blog-random-thought-and-everything-else! 
+              Saya adalah AI  assistant pribadi yang siap membantu Anda menjelajahi 
+              pemikiran unik dan kreatif dari Amazia Kristanto. Blog ini adalah ruang 
+              ekspresi yang penuh dengan ide-ide menarik, tulisan reflektif, dan 
+              pemikiran yang terkadang random namun bermakna."
+            </p>
+            <p>
+              What do you want to explore today? Saya siap membantu Anda menemukan 
+              konten yang sesuai dengan minat Anda,tentang pemilik blog ini, menjawab pertanyaan, atau sekadar 
+              berbincang tentang topik yang menarik!
+            </p>
+          </div>
+        </div>
+        <div id="chat-input-container">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Ketik pertanyaanmu..."
+          /><button id="send-chat-btn">Kirim</button>
+        </div>
+      </div>
+    </div>
+    <button id="open-chatbot-btn"><i class="fas fa-comments"></i></button>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"
+      defer
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script src="js/visitor-counter.js" defer></script>
+    <script src="js/app-core.js" defer></script>
+    <script src="js/page-initializers.js" defer></script>
+    <script src="js/portfolio.js" defer></script>
+    <script src="js/chatbot_knowledge.js" defer></script>
+    <script src="js/chatbot_sederhana.js" defer></script>
+  </body>
+</html>

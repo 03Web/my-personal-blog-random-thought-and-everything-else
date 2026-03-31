@@ -1,0 +1,731 @@
+/* ============================================= */
+/* === POJOK BACA - KATALOG & PDF READER     === */
+/* ============================================= */
+
+/* --- CSS Variables untuk tema Reader --- */
+:root {
+  --reader-bg: #0d0d0d;
+  --reader-bar-bg: rgba(15, 15, 15, 0.95);
+  --reader-text: #e0e0e0;
+  --reader-accent: var(--primary-color, #00aaff);
+  --reader-btn-bg: rgba(255, 255, 255, 0.08);
+  --reader-btn-hover: rgba(255, 255, 255, 0.18);
+  --reader-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================= */
+/* === SECTION HEADER                     === */
+/* ========================================= */
+.bacaan-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.bacaan-section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.bacaan-section-header h2 {
+  font-size: 2.5em;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--primary-color), #7b68ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bacaan-section-header p {
+  font-size: 1em;
+  color: var(--dark-text);
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ========================================= */
+/* === KATALOG BUKU GRID                  === */
+/* ========================================= */
+.bacaan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 28px;
+}
+
+.bacaan-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bacaan-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 170, 255, 0.15),
+    0 0 0 1px rgba(0, 170, 255, 0.2);
+}
+
+.bacaan-card-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: linear-gradient(145deg, #1a1a1a, #111);
+}
+
+.bacaan-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease;
+}
+
+.bacaan-card:hover .bacaan-card-cover img {
+  transform: scale(1.08);
+  filter: brightness(0.75);
+}
+
+/* Overlay read icon on hover */
+.bacaan-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.bacaan-card:hover .bacaan-card-overlay {
+  opacity: 1;
+}
+
+.bacaan-card-overlay i {
+  font-size: 2.5em;
+  color: #fff;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  animation: pulseIcon 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseIcon {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.bacaan-card-info {
+  padding: 14px;
+  text-align: center;
+}
+
+.bacaan-card-info h4 {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--light-text);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+/* Loading State */
+.bacaan-grid-loading {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.bacaan-grid-loading i {
+  font-size: 2em;
+  color: var(--primary-color);
+}
+
+.bacaan-grid-loading p {
+  margin-top: 15px;
+  color: var(--dark-text);
+}
+
+/* ========================================= */
+/* === PDF READER MODAL (FULLSCREEN)      === */
+/* ========================================= */
+.pdf-reader-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: var(--reader-bg);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.pdf-reader-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Top Bar --- */
+.reader-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--reader-bar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--reader-border);
+  z-index: 10;
+  min-height: 52px;
+  flex-shrink: 0;
+}
+
+.reader-top-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.reader-title {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: var(--reader-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reader-top-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* --- Reader Button Styles --- */
+.reader-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--reader-btn-bg);
+  border: 1px solid var(--reader-border);
+  color: var(--reader-text);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.85em;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.reader-btn:hover {
+  background: var(--reader-btn-hover);
+}
+
+.reader-btn:active {
+  transform: scale(0.95);
+}
+
+.reader-btn.active-toggle {
+  background: var(--reader-accent);
+  color: #000;
+  border-color: var(--reader-accent);
+}
+
+.reader-btn-close {
+  background: rgba(220, 53, 69, 0.15);
+  border-color: rgba(220, 53, 69, 0.3);
+  color: #ff6b6b;
+}
+
+.reader-btn-close:hover {
+  background: rgba(220, 53, 69, 0.3);
+}
+
+/* Icon-only button on small screens */
+.reader-btn i {
+  font-size: 1em;
+}
+
+.reader-btn .btn-label {
+  display: inline;
+}
+
+/* --- Canvas Area --- */
+.reader-canvas-area {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+.reader-canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.reader-canvas-wrapper canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  transition: filter 0.3s ease;
+}
+
+/* Dark Mode Filter (applied to canvas) */
+.reader-dark-mode .reader-canvas-wrapper canvas {
+  filter: invert(0.85) hue-rotate(180deg) contrast(1.05);
+}
+
+/* --- Page Transition Animations --- */
+.reader-canvas-wrapper.slide-left {
+  animation: slideInFromRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.reader-canvas-wrapper.slide-right {
+  animation: slideInFromLeft 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --- Bottom Bar --- */
+.reader-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--reader-bar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--reader-border);
+  z-index: 10;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.reader-page-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reader-page-input {
+  width: 50px;
+  text-align: center;
+  background: var(--reader-btn-bg);
+  border: 1px solid var(--reader-border);
+  color: var(--reader-text);
+  border-radius: 6px;
+  padding: 6px 4px;
+  font-size: 0.9em;
+  font-family: "Poppins", sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.reader-page-input:focus {
+  border-color: var(--reader-accent);
+}
+
+.reader-page-total {
+  font-size: 0.85em;
+  color: var(--dark-text);
+  white-space: nowrap;
+}
+
+.reader-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reader-zoom-level {
+  font-size: 0.8em;
+  color: var(--dark-text);
+  min-width: 42px;
+  text-align: center;
+}
+
+/* --- Loading Overlay inside reader --- */
+.reader-loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 20;
+  gap: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.reader-loading-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.reader-loading-overlay i {
+  font-size: 2.5em;
+  color: var(--reader-accent);
+}
+
+.reader-loading-overlay p {
+  color: var(--reader-text);
+  font-size: 0.95em;
+}
+
+/* Error overlay */
+.reader-error-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 20;
+  gap: 12px;
+  padding: 30px;
+  text-align: center;
+  display: none;
+}
+
+.reader-error-overlay.active {
+  display: flex;
+}
+
+.reader-error-overlay i {
+  font-size: 3em;
+  color: #ff6b6b;
+}
+
+.reader-error-overlay h3 {
+  color: var(--reader-text);
+  font-size: 1.2em;
+}
+
+.reader-error-overlay p {
+  color: var(--dark-text);
+  font-size: 0.9em;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+/* ========================================= */
+/* === SEPARATOR BETWEEN SECTIONS         === */
+/* ========================================= */
+.bacaan-separator {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: 0 auto;
+  width: 60%;
+  max-width: 600px;
+}
+
+/* ========================================= */
+/* === ARTIKEL SECTION                    === */
+/* ========================================= */
+.bacaan-artikel-section {
+  padding-top: 30px;
+}
+
+.bacaan-artikel-section .bacaan-section-header h2 {
+  background: linear-gradient(135deg, #a0a0a0, #666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.8em;
+}
+
+.bacaan-artikel-section .bacaan-section-header {
+  margin-bottom: 30px;
+}
+
+/* Filter bar */
+.artikel-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-group label {
+  color: var(--dark-text);
+  font-size: 0.85em;
+}
+
+.pb-sorter {
+  background-color: var(--card-bg);
+  color: var(--light-text);
+  border: 1px solid var(--border-color);
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.pb-sorter:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Compact article list */
+.artikel-list-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.artikel-compact-item {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--light-text);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.artikel-compact-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(0, 170, 255, 0.08);
+  border-color: rgba(0, 170, 255, 0.25);
+}
+
+.artikel-compact-thumb {
+  width: 90px;
+  min-height: 90px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.artikel-compact-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.artikel-compact-item:hover .artikel-compact-thumb img {
+  transform: scale(1.08);
+}
+
+.artikel-compact-body {
+  flex: 1;
+  padding: 12px 14px 12px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.artikel-compact-kategori {
+  font-size: 0.65em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary-color);
+  font-style: normal;
+}
+
+.artikel-compact-body h4 {
+  font-size: 0.88em;
+  font-weight: 600;
+  margin: 0;
+  color: var(--light-text);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.artikel-compact-desc {
+  font-size: 0.75em;
+  color: var(--dark-text);
+  margin: 0;
+  font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.artikel-compact-date {
+  font-size: 0.7em;
+  color: #777;
+  font-style: normal;
+}
+
+.artikel-compact-date i {
+  margin-right: 4px;
+  font-size: 0.85em;
+}
+
+/* ========================================= */
+/* === RESPONSIVE DESIGN                  === */
+/* ========================================= */
+@media (max-width: 768px) {
+  .bacaan-section-header h2 {
+    font-size: 1.8em;
+  }
+
+  .bacaan-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+
+  .bacaan-card-info {
+    padding: 10px;
+  }
+
+  .bacaan-card-info h4 {
+    font-size: 0.8em;
+  }
+
+  /* Reader Mobile */
+  .reader-top-bar {
+    padding: 8px 12px;
+  }
+
+  .reader-title {
+    font-size: 0.8em;
+  }
+
+  .reader-btn {
+    padding: 8px 10px;
+    font-size: 0.85em;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .reader-btn .btn-label {
+    display: none;
+  }
+
+  .reader-canvas-area {
+    padding: 10px;
+  }
+
+  .reader-bottom-bar {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .reader-page-input {
+    width: 42px;
+    padding: 6px 4px;
+    font-size: 0.85em;
+  }
+
+  .reader-page-total,
+  .reader-zoom-level {
+    font-size: 0.8em;
+  }
+
+  .reader-zoom-controls {
+    gap: 8px;
+  }
+
+  /* Artikel Section mobile */
+  .bacaan-artikel-section .bacaan-section-header h2 {
+    font-size: 1.4em;
+  }
+
+  .artikel-compact-thumb {
+    width: 70px;
+    min-height: 70px;
+  }
+
+  .artikel-compact-body {
+    padding: 8px 10px 8px 0;
+  }
+
+  .artikel-compact-body h4 {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 480px) {
+  .bacaan-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .bacaan-section {
+    padding: 20px 12px 40px;
+  }
+
+  .reader-bottom-bar {
+    justify-content: space-between;
+  }
+
+  .artikel-filter-bar {
+    gap: 10px;
+  }
+
+  .pb-sorter {
+    font-size: 0.75em;
+    padding: 6px 8px;
+  }
+}
