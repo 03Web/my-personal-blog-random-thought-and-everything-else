@@ -73,6 +73,12 @@
   },
   {
     "id": "buku-011",
+    "judul_buku": "sejarah filsafat barat",
+    "cover_url": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1256477944i/7044698.jpg",
+    "pdf_url": "https://drive.google.com/file/d/1yBgBBPAf77LbTNOrVQE6Odeq1cLUnE1V/view?usp=sharing"
+  },
+  {
+    "id": "buku-012",
     "judul_buku": "think again",
     "cover_url": "https://cdn.gramedia.com/uploads/products/x6240in47a.jpg",
     "pdf_url": "https://drive.google.com/file/d/1IBBcBsZn5oahKUaSvLiHhqQeyhVUolK7/view?usp=sharing"
