@@ -52,6 +52,154 @@ const BacaanApp = (() => {
     ];
   }
 
+  // =============================================
+  // === KATALOG BUKU - STATE MANAGEMENT        ===
+  // =============================================
+
+  let bukuData = [];
+  let bukuKategoriSet = new Set();
+
+  /**
+   * Extract unique categories from buku data and populate filter dropdown
+   */
+  function generateKategoriFilter(books) {
+    const select = document.getElementById('buku-kategori-filter');
+    if (!select) return;
+
+    // Collect unique categories
+    bukuKategoriSet.clear();
+    books.forEach((book) => {
+      if (book.kategori) {
+        bukuKategoriSet.add(book.kategori);
+      }
+    });
+
+    // Sort categories alphabetically
+    const sortedKategori = Array.from(bukuKategoriSet).sort();
+
+    // Save current selection
+    const currentValue = select.value;
+
+    // Clear existing options (keep "Semua Kategori")
+    select.innerHTML = '<option value="semua">Semua Kategori</option>';
+
+    // Add options dynamically
+    sortedKategori.forEach((kategori) => {
+      const option = document.createElement('option');
+      option.value = kategori;
+      option.textContent = kategori;
+      select.appendChild(option);
+    });
+
+    // Restore selection if still valid
+    if (currentValue !== 'semua' && bukuKategoriSet.has(currentValue)) {
+      select.value = currentValue;
+    }
+  }
+
+  /**
+   * Filter and render books based on selected category and search query
+   */
+  function filterAndRenderBuku() {
+    const container = document.getElementById('bacaan-grid-container');
+    const kategoriFilter = document.getElementById('buku-kategori-filter');
+    const searchInput = document.getElementById('buku-search-input');
+
+    if (!container || bukuData.length === 0) return;
+
+    const selectedKategori = kategoriFilter ? kategoriFilter.value : 'semua';
+    const searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+    // Filter books
+    const filteredBooks = bukuData.filter((book) => {
+      // Category filter
+      const kategoriMatch = selectedKategori === 'semua' || book.kategori === selectedKategori;
+
+      // Search filter (judul buku)
+      const judulLower = (book.judul_buku || '').toLowerCase();
+      const searchMatch = !searchQuery || judulLower.includes(searchQuery);
+
+      return kategoriMatch && searchMatch;
+    });
+
+    // Render filtered results
+    if (filteredBooks.length === 0) {
+      container.innerHTML = `
+        <div class="buku-empty-state">
+          <i class="fas fa-search"></i>
+          <p>Tidak ada buku yang cocok dengan filter.</p>
+        </div>
+      `;
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    filteredBooks.forEach((book) => {
+      const card = document.createElement('div');
+      card.className = 'bacaan-card animate-on-scroll';
+      card.dataset.title = book.judul_buku;
+      card.dataset.kategori = book.kategori;
+
+      card.innerHTML = `
+        <div class="bacaan-card-cover">
+          <img src="${book.cover_url}" alt="Cover ${book.judul_buku}" loading="lazy" />
+          <div class="bacaan-card-overlay">
+            <i class="fas fa-book-reader"></i>
+          </div>
+        </div>
+        <div class="bacaan-card-info">
+          ${book.kategori ? `<span class="buku-kategori">${book.kategori}</span>` : ''}
+          <h4>${book.judul_buku}</h4>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        openReader(book.pdf_url, book.judul_buku);
+      });
+
+      fragment.appendChild(card);
+    });
+
+    container.innerHTML = '';
+    container.appendChild(fragment);
+
+    // Re-init scroll animations for new elements
+    if (typeof App !== 'undefined' && App.initScrollAnimations) {
+      App.initScrollAnimations();
+    }
+  }
+
+  /**
+   * Bind filter events for buku catalog
+   */
+  function bindBukuFilterEvents() {
+    const kategoriFilter = document.getElementById('buku-kategori-filter');
+    const searchInput = document.getElementById('buku-search-input');
+
+    if (kategoriFilter) {
+      kategoriFilter.addEventListener('change', filterAndRenderBuku);
+    }
+
+    if (searchInput) {
+      // Debounced search for better performance
+      let searchTimeout;
+      searchInput.addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(filterAndRenderBuku, 150);
+      });
+
+      // Clear search on Escape key
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          filterAndRenderBuku();
+          searchInput.blur();
+        }
+      });
+    }
+  }
+
   /**
    * Try loading PDF via pdf.js with CORS proxies (fast timeout).
    * Returns pdf document or null if all fail.
@@ -95,44 +243,21 @@ const BacaanApp = (() => {
     try {
       const response = await fetch('data/bacaan.json');
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const books = await response.json();
+      bukuData = await response.json();
 
-      if (!books || books.length === 0) {
+      if (!bukuData || bukuData.length === 0) {
         container.innerHTML = '<p style="text-align:center;color:var(--dark-text);">Belum ada buku tersedia.</p>';
         return;
       }
 
-      const fragment = document.createDocumentFragment();
+      // Generate kategori filter options dynamically
+      generateKategoriFilter(bukuData);
 
-      books.forEach((book) => {
-        const card = document.createElement('div');
-        card.className = 'bacaan-card animate-on-scroll';
-        card.dataset.title = book.judul_buku;
-        card.innerHTML = `
-          <div class="bacaan-card-cover">
-            <img src="${book.cover_url}" alt="Cover ${book.judul_buku}" loading="lazy" />
-            <div class="bacaan-card-overlay">
-              <i class="fas fa-book-reader"></i>
-            </div>
-          </div>
-          <div class="bacaan-card-info">
-            <h4>${book.judul_buku}</h4>
-          </div>
-        `;
+      // Render dengan filter (default: semua)
+      filterAndRenderBuku();
 
-        card.addEventListener('click', () => {
-          openReader(book.pdf_url, book.judul_buku);
-        });
-
-        fragment.appendChild(card);
-      });
-
-      container.innerHTML = '';
-      container.appendChild(fragment);
-
-      if (typeof App !== 'undefined' && App.initScrollAnimations) {
-        App.initScrollAnimations();
-      }
+      // Bind filter events
+      bindBukuFilterEvents();
     } catch (error) {
       console.error('Gagal memuat katalog buku:', error);
       container.innerHTML = `

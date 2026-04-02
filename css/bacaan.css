@@ -485,7 +485,22 @@
   margin-bottom: 30px;
 }
 
-/* Filter bar */
+/* ========================================= */
+/* === FILTER BAR STYLES (Buku & Artikel) === */
+/* ========================================= */
+
+/* Filter bar untuk Katalog Buku */
+.buku-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+/* Filter bar untuk Artikel */
 .artikel-filter-bar {
   display: flex;
   align-items: center;
@@ -505,6 +520,13 @@
   font-size: 0.85em;
 }
 
+/* Search group - lebih lebar */
+.filter-group.search-group {
+  flex: 1;
+  max-width: 300px;
+  min-width: 200px;
+}
+
 .pb-sorter {
   background-color: var(--card-bg);
   color: var(--light-text);
@@ -514,12 +536,79 @@
   font-family: "Poppins", sans-serif;
   font-size: 0.8em;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-width: 140px;
+}
+
+.pb-sorter:hover {
+  border-color: var(--primary-color);
 }
 
 .pb-sorter:focus {
   outline: none;
   border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
+}
+
+/* Search input styling */
+.pb-search {
+  background-color: var(--card-bg);
+  color: var(--light-text);
+  border: 1px solid var(--border-color);
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85em;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pb-search::placeholder {
+  color: var(--dark-text);
+  opacity: 0.7;
+}
+
+.pb-search:hover {
+  border-color: var(--primary-color);
+}
+
+.pb-search:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
+}
+
+/* Kategori badge pada card buku */
+.bacaan-card-info .buku-kategori {
+  display: inline-block;
+  font-size: 0.7em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary-color);
+  margin-bottom: 6px;
+  padding: 2px 8px;
+  background: rgba(0, 170, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* Empty state message */
+.buku-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--dark-text);
+}
+
+.buku-empty-state i {
+  font-size: 3em;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+  opacity: 0.5;
+}
+
+.buku-empty-state p {
+  font-size: 1em;
 }
 
 /* Compact article list */
@@ -720,12 +809,24 @@
     justify-content: space-between;
   }
 
-  .artikel-filter-bar {
+  .artikel-filter-bar,
+  .buku-filter-bar {
     gap: 10px;
   }
 
-  .pb-sorter {
+  .filter-group.search-group {
+    max-width: 100%;
+    min-width: 100%;
+    order: -1;
+  }
+
+  .pb-sorter,
+  .pb-search {
     font-size: 0.75em;
     padding: 6px 8px;
+  }
+
+  .pb-search {
+    width: 100%;
   }
 }

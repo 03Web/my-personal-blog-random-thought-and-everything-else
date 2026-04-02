@@ -2,90 +2,105 @@
   {
     "id": "buku-001",
     "judul_buku": "the anxious generation",
+    "kategori": "Psychology",
     "cover_url": "https://pbs.twimg.com/media/GvFdhH4bsAADXrb?format=jpg&name=small",
     "pdf_url": "https://drive.google.com/file/d/1AkITaZmb4SlC8rVF16cqOoa2RdrmW6rR/view?usp=sharing"
   },
   {
     "id": "buku-002",
     "judul_buku": "the righteous mind",
+    "kategori": "Psychology",
     "cover_url": "https://pbs.twimg.com/media/GqGEAn_XsAA34pH?format=jpg&name=medium",
     "pdf_url": "https://drive.google.com/file/d/12eKhE-aHc1feHVjqkN6TwYT1OvDgK4Uk/view?usp=sharing"
   },
   {
     "id": "buku-003",
     "judul_buku": "atomic habits",
+    "kategori": "Self Development",
     "cover_url": "https://cdn.gramedia.com/uploads/items/9786020633176_.Atomic_Habit.jpg",
     "pdf_url": "https://drive.google.com/file/d/1jZEg7mR9FgYKboY7p8_3AhjTQy1Hu5pZ/view?usp=sharing"
   },
   {
     "id": "buku-004",
     "judul_buku": "thinking fast and slow",
+    "kategori": "Psychology",
     "cover_url": "https://imgv2-1-f.scribdassets.com/img/word_document/182569769/original/216x287/fb2c0855e3/1764652337?v=1",
     "pdf_url": "https://drive.google.com/file/d/1ylLzwBCDWbBSYHrbd-rZKO_obbBLL2uE/view?usp=sharing"
   },
   {
     "id": "buku-005",
     "judul_buku": "madilog",
+    "kategori": "Philosophy",
     "cover_url": "https://pbs.twimg.com/media/GaZ5OyhboAAP3yB?format=jpg&name=small",
     "pdf_url": "https://drive.google.com/file/d/1FshTgOpQL5ESK36dSxsopSoer6zsgTPq/view?usp=sharing"
   },
   {
     "id": "buku-006",
     "judul_buku": "aksi massa",
+    "kategori": "History",
     "cover_url": "https://cdn.gramedia.com/uploads/product-metas/k7s01ss367.jpeg",
     "pdf_url": "https://drive.google.com/file/d/1SfpQFkMPkuabOTBTamr5Va0LhNyvqoPc/view?usp=sharing"
   },
   {
     "id": "buku-011",
     "judul_buku": "alam pikiran yunani",
+    "kategori": "Philosophy",
     "cover_url": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1255104026i/1772451.jpg",
     "pdf_url": "https://drive.google.com/file/d/16QNyZzweov8NglE77Qq4AvWCS3lYxmh3/view?usp=sharing"
   },
   {
     "id": "buku-007",
     "judul_buku": "catatan seorang demonstran",
+    "kategori": "History",
     "cover_url": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1416554142i/1488085.jpg",
     "pdf_url": "https://drive.google.com/file/d/1wFm44uVXgfzfhLJxvuonvddzTNCfvbdP/view?usp=sharing"
   },
   {
     "id": "buku-007",
     "judul_buku": "Bumi manusia",
+    "kategori": "Fiction",
     "cover_url": "https://pbs.twimg.com/media/HC0FSFXb0AE_5kr?format=jpg&name=large",
     "pdf_url": "https://drive.google.com/file/d/1ISohCnhYipQ4wKAPgDlg79AXaTCv53L1/view?usp=sharing"
   },
   {
     "id": "buku-008",
     "judul_buku": "mengapa negara-negara GAGAL",
+    "kategori": "History",
     "cover_url": "https://imgv2-1-f.scribdassets.com/img/document/365766659/original/cd124cf219/1?v=1",
     "pdf_url": "https://drive.google.com/file/d/1Mp5dW1BOhYnit7jU3bcshXZ2HPTr9Lmw/view?usp=sharing"
   },
   {
     "id": "buku-009",
     "judul_buku": "cosmos",
+    "kategori": "Science",
     "cover_url": "https://cdn.gramedia.com/uploads/items/9786024242244_kosmos_1.jpg",
     "pdf_url": "https://drive.google.com/file/d/1vUharj1GKPYshnzFXdTaMVwlFgTyzgpP/view?usp=sharing"
   },
   {
     "id": "buku-010",
     "judul_buku": "seporsi mei ayam sebelum mati",
+    "kategori": "Fiction",
     "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaaXwGHe4ctn3TOXNTx5uutB7OQiEo0RVCwA&s",
     "pdf_url": "https://drive.google.com/file/d/1Z2YeRuZMXhIH3xkbIIiid0oxmyFpFcT0/view?usp=drive_link"
   },
   {
     "id": "buku-011",
     "judul_buku": "sejarah filsafat barat",
+    "kategori": "Philosophy",
     "cover_url": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1256477944i/7044698.jpg",
     "pdf_url": "https://drive.google.com/file/d/1yBgBBPAf77LbTNOrVQE6Odeq1cLUnE1V/view?usp=sharing"
   },
   {
     "id": "buku-012",
     "judul_buku": "5 cm",
+    "kategori": "Fiction",
     "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZtSh_i4Fvt7bNpreKQYY47QQtK-jtD78bWQ&s",
     "pdf_url": "https://drive.google.com/file/d/12GdiMAppI3FHYMtAxh7VMdYUFPu9u3Ow/view?usp=sharing"
   },
   {
     "id": "buku-013",
     "judul_buku": "think again",
+    "kategori": "Psychology",
     "cover_url": "https://cdn.gramedia.com/uploads/products/x6240in47a.jpg",
     "pdf_url": "https://drive.google.com/file/d/1IBBcBsZn5oahKUaSvLiHhqQeyhVUolK7/view?usp=sharing"
   }

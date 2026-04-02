@@ -37,6 +37,26 @@
           <p>Koleksi buku digital pilihan — klik untuk langsung membaca.</p>
         </div>
 
+        <!-- Filter Bar untuk Katalog Buku -->
+        <div class="buku-filter-bar animate-on-scroll" id="buku-filter-bar">
+          <div class="filter-group">
+            <label for="buku-kategori-filter"><i class="fas fa-filter"></i></label>
+            <select id="buku-kategori-filter" class="pb-sorter">
+              <option value="semua">Semua Kategori</option>
+              <!-- Options akan di-generate otomatis oleh JS -->
+            </select>
+          </div>
+          <div class="filter-group search-group">
+            <label for="buku-search-input"><i class="fas fa-search"></i></label>
+            <input
+              type="text"
+              id="buku-search-input"
+              class="pb-search"
+              placeholder="Cari judul buku..."
+            />
+          </div>
+        </div>
+
         <div class="bacaan-grid" id="bacaan-grid-container">
           <!-- Book cards rendered by JS -->
           <div class="bacaan-grid-loading">
