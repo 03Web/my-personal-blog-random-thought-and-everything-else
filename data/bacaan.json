@@ -79,6 +79,12 @@
   },
   {
     "id": "buku-012",
+    "judul_buku": "5 cm",
+    "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZtSh_i4Fvt7bNpreKQYY47QQtK-jtD78bWQ&s",
+    "pdf_url": "https://drive.google.com/file/d/12GdiMAppI3FHYMtAxh7VMdYUFPu9u3Ow/view?usp=sharing"
+  },
+  {
+    "id": "buku-013",
     "judul_buku": "think again",
     "cover_url": "https://cdn.gramedia.com/uploads/products/x6240in47a.jpg",
     "pdf_url": "https://drive.google.com/file/d/1IBBcBsZn5oahKUaSvLiHhqQeyhVUolK7/view?usp=sharing"
