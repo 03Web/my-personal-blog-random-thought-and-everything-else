@@ -69,8 +69,7 @@ header#main-header {
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: top 0.3s ease, bottom 0.3s ease;
-  /* Tambahkan transisi */
+  transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-container {
@@ -1069,7 +1068,7 @@ select.sorter:focus {
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -3659,7 +3658,7 @@ body[data-page-id="aspirasi"] .container {
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border-bottom: 1px solid var(--border-color);
   height: 60px;
   /* Tinggi header dibuat ramping */
