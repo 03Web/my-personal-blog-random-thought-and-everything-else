@@ -477,6 +477,7 @@ const App = (() => {
   // === FUNGSI HEADER MOBILE ===
   function handleMobileHeaderScroll() {
     const topHeader = document.querySelector(".mobile-top-header");
+    const bottomNav = document.querySelector("header#main-header");
     if (!topHeader) return;
 
     let currentScroll =
@@ -484,8 +485,10 @@ const App = (() => {
 
     if (currentScroll > state.lastScrollTop && currentScroll > 50) {
       topHeader.classList.add("hidden");
+      if (bottomNav) bottomNav.classList.add("hidden");
     } else {
       topHeader.classList.remove("hidden");
+      if (bottomNav) bottomNav.classList.remove("hidden");
     }
     state.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
   }

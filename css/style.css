@@ -1133,6 +1133,11 @@ select.sorter:focus {
         0,
         0.9);
     /* Sedikit lebih gelap untuk kontras */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  header#main-header.hidden {
+    transform: translateY(100%);
   }
 
   /* Atur Navigasi untuk Tampil di Bawah */
