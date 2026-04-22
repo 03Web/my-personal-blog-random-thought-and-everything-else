@@ -1,5 +1,48 @@
 [
   {
+    "id": "api-catatan-001",
+    "title": "Knowledge Search untuk Obsidian Notes dengan MongoDB",
+    "shortDescription": "Aplikasi pencarian catatan berbasis web dengan big data analytics yang mengindeks Obsidian note(.md, .txt) Vault ke MongoDB(noSQL), mendukung recursive vault scan, metadata-aware search engine, advanced indexing, note reader UI, dan fallback cache strategy untuk production deploy.",
+    "fullDescription": "API Catatan adalah enterprise-grade big data knowledge search system yang dirancang untuk mengubah Obsidian Vault dan note biasa menjadi scalable search engine dengan data analytics capabilities. Aplikasi ini membaca, mengindeks, dan memproses file note dari satu folder induk vault secara recursive dengan high-performance indexing, mengekstrak isi dan metadata penting, lalu menyimpannya ke MongoDB Atlas untuk real-time querying melalui API dan ditampilkan di antarmuka web yang responsif.\n\nFitur utama project ini meliputi: 1. Recursive Vault Indexing dengan bulk data processing untuk membaca seluruh note dari subfolder kategori tanpa perlu banyak path manual. 2. MongoDB Document Storage & Data Warehouse untuk menyimpan judul, isi, nama file, kategori folder, path relatif, ekstensi, dan deep link ke Obsidian dengan optimized collections. 3. Metadata-Aware Search Engine dengan advanced ranking algorithm berdasarkan judul, nama file, folder kategori, path, dan isi note. 4. Full Note Reader UI untuk membuka isi catatan penuh langsung di browser. 5. Obsidian Deep Link sehingga note yang ditemukan bisa dibuka kembali di aplikasi Obsidian. 6. Fallback Strategy berlapis dengan urutan MongoDB, vault lokal, lalu cache JSON deploy agar aplikasi tetap berfungsi saat database tidak tersedia. 7. Deploy Snapshot Cache dengan incremental sync untuk data distribution dan hosting yang efisien.\n\nSecara teknis, project ini menunjukkan integrasi advanced file system processing, NoSQL document database optimization, heuristic search ranking algorithms, distributed caching strategy, REST API dengan data aggregation pipelines, dan frontend ringan berbasis Tailwind CSS. Project ini cocok diposisikan sebagai enterprise knowledge management platform, AI-ready notes search engine, dan portfolio backend-web app yang menonjolkan alur data kompleks dan big data patterns dalam production environment.",
+    "thumbnail": "https://img.freepik.com/free-vector/big-data-circular-grayscale-visualization-futuristic-infographic-information-aesthetic-design-visual-data-complexity-complex-data-threads-graphic-visualization-social-network-abstract-data-graph_1217-2125.jpg?semt=ais_hybrid&w=740&q=80",
+    "images": [
+      "https://placehold.co/1280x720/e2e8f0/0f172a?text=Search+Interface"
+    ],
+    "technologies": [
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB Atlas",
+      "MongoDB Node.js Driver",
+      "HTML",
+      "Tailwind CSS",
+      "Obsidian Vault Integration",
+      "Vercel"
+    ],
+    "category": "Knowledge Search & Notes Management",
+    "tags": [
+      "MongoDB",
+      "Node.js",
+      "Express",
+      "Obsidian",
+      "Search Engine",
+      "Tailwind CSS"
+    ],
+    "links": {
+      "live": "https://nosql-mongodb-catatan-note-search.amazthegreatape.fun/",
+      "github": "https://github.com/yourusername/api-catatan",
+      "documentation": "README.md"
+    },
+    "status": "Completed",
+    "featured": true,
+    "completedDate": "2026-04-22",
+    "stats": {
+      "indexedNotes": 193,
+      "supportedFormats": 4,
+      "contributors": 1
+    }
+  },
+  {
     "id": "toko-online-001",
     "title": "Modern E-Commerce dengan Realtime Chat & AI",
     "shortDescription": "Aplikasi e-commerce end-to-end yang dibangun menggunakan SvelteKit & Supabase, dilengkapi integrasi Midtrans, Realtime Admin Chat, dan AI Semantic Search.",
